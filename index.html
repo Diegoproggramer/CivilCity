@@ -5,137 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Civil City - Leviathan Portal</title>
     <link rel="stylesheet" href="style.css">
+    <!-- TradingView Widget BEGIN -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <!-- TradingView Widget END -->
 </head>
 <body>
-
-    <header class="main-header">
-        <div class="container header-content">
-            <div class="logo">
-                <h1>CIVIL CITY</h1>
-                <p id="brand-story" style="font-size: 12px; color: var(--theme-text-secondary); margin: 0;"></p>
-            </div>
-            <nav class="main-nav">
-                <button class="nav-tab active" data-target="#dashboard-tab">داشبورد اصلی</button>
-                <button class="nav-tab" data-target="#markets-tab">تحلیل بازارها</button>
-                <button class="nav-tab" data-target="#tools-tab">ابزارها</button>
-            </nav>
-        </div>
-    </header>
-
-    <div id="live-ticker-bar">
-        <!-- TradingView Ticker Widget BEGIN -->
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-            { "symbols": [ { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }, { "proName": "FX_IDC:XAUUSD", "title": "طلا" }, { "proName": "BITSTAMP:BTCUSD", "title": "بیت‌کوین" }, { "proName": "BITSTAMP:ETHUSD", "title": "اتریوم" } ], "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "fa_IR" }
-            </script>
-        </div>
-        <!-- TradingView Ticker Widget END -->
-    </div>
-
     <div class="container">
-        <!-- Main Dashboard Tab -->
-        <div id="dashboard-tab" class="tab-content active">
-            <div class="main-layout">
-                <main>
-                    <div class="card">
-                        <div class="card-header"><h2>تحلیل تکنیکال جامع BTC/USDT</h2></div>
-                        <!-- THIS is the fixed, full-width widget -->
-                        <div class="tradingview-widget-container" style="height: 550px;">
-                            <div class="tradingview-widget-container__widget"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
-                            { "interval": "1D", "width": "100%", "isTransparent": true, "height": "100%", "symbol": "BINANCE:BTCUSDT", "showIntervalTabs": true, "locale": "fa_IR", "colorTheme": "dark" }
-                            </script>
-                        </div>
-                    </div>
-                </main>
-                <aside>
-                    <div class="card" id="news-feed">
-                        <div class="card-header"><h2>اخبار و سیگنال‌ها</h2></div>
-                        <div class="news-item">
-                            <img src="https://placehold.co/80x60/8a2be2/white?text=Gold" alt="Gold News">
-                            <div class="news-content">
-                                <h3>شکست سقف تاریخی طلا در بازارهای جهانی</h3>
-                                <p>تحلیلگران دلیل اصلی را افزایش تنش‌های ژئوپلیتیکی می‌دانند.</p>
-                            </div>
-                        </div>
-                        <div class="news-item">
-                            <img src="https://placehold.co/80x60/1E90FF/white?text=Crypto" alt="Crypto News">
-                            <div class="news-content">
-                                <h3>اصلاح قیمت بیت‌کوین پس از رالی اخیر</h3>
-                                <p>فشار فروش در محدوده ۷۰ هزار دلار افزایش یافته است.</p>
-                            </div>
-                        </div>
-                         <div class="news-item">
-                            <img src="https://placehold.co/80x60/32CD32/white?text=Stock" alt="Stock News">
-                            <div class="news-content">
-                                <h3>شاخص کل بورس در آستانه کانال ۲.۲ میلیون</h3>
-                                <p>گروه بانکی و خودرویی پیشرو تقاضا در بازار امروز بودند.</p>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </div>
+        <header>
+            <h1>CIVIL CITY</h1>
+            <div class="header-logo"></div> <!-- Placeholder for logo -->
+        </header>
 
-        <!-- Markets Analysis Tab -->
-        <div id="markets-tab" class="tab-content">
-            <div class="content-grid">
-                <div class="card">
-                    <div class="card-header"><h2>نمای بازار کریپتو</h2></div>
+        <nav>
+            <button class="tab-button active" data-tab="dashboard-content">داشبورد اصلی</button>
+            <button class="tab-button" data-tab="analysis-content">تحلیل بازارها</button>
+            <button class="tab-button" data-tab="tools-content">ابزارها</button>
+        </nav>
+
+        <main>
+            <!-- Tab 1: Dashboard -->
+            <div id="dashboard-content" class="tab-content active">
+                <div class="main-content">
+                    <!-- TradingView Widget 1: Technical Analysis -->
                     <div class="tradingview-widget-container">
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                        { "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "fa_IR", "width": "100%", "height": "100%", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "tabs": [ { "title": "ارزهای دیجیتال", "symbols": [ { "s": "BINANCE:BTCUSDT" }, { "s": "BINANCE:ETHUSDT" }, { "s": "BINANCE:SOLUSDT" }, { "s": "BINANCE:XRPUSDT" } ] } ] }
+                        <div id="technical-analysis-widget"></div>
+                        <script type="text/javascript">
+                        new TradingView.widget(
+                        {
+                          "container_id": "technical-analysis-widget",
+                          "width": "100%",
+                          "height": "100%",
+                          "symbol": "BINANCE:BTCUSDT",
+                          "interval": "D",
+                          "timezone": "Etc/UTC",
+                          "theme": "dark",
+                          "style": "1",
+                          "toolbar_bg": "#f1f3f6",
+                          "enable_publishing": false,
+                          "withdateranges": true,
+                          "hide_side_toolbar": false,
+                          "allow_symbol_change": true,
+                          "show_popup_button": true,
+                          "popup_width": "1000",
+                          "popup_height": "650",
+                          "locale": "en"
+                        }
+                        );
+                        </script>
+                    </div>
+                    <!-- TradingView Widget 2: Ticker Tape -->
+                    <div class="tradingview-widget-container__ticker">
+                        <div class="tradingview-widget-container__widget_ticker"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                        {
+                        "symbols": [
+                          {
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500"
+                          },
+                          {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                          },
+                          {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                          },
+                          {
+                            "description": "Gold",
+                            "proName": "OANDA:XAUUSD"
+                          }
+                        ],
+                        "showSymbolLogo": true,
+                        "colorTheme": "dark",
+                        "isTransparent": true,
+                        "displayMode": "adaptive",
+                        "locale": "en"
+                      }
                         </script>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header"><h2>نمای بازار فارکس</h2></div>
-                    <div class="tradingview-widget-container">
-                         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                        { "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "fa_IR", "width": "100%", "height": "100%", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "tabs": [ { "title": "جفت ارزهای اصلی", "symbols": [ { "s": "FX:EURUSD" }, { "s": "FX:GBPUSD" }, { "s": "FX:USDJPY" }, { "s": "FX:AUDUSD" } ] } ] }
-                        </script>
+                <!-- Sidebar for live intelligence feed -->
+                <div class="sidebar">
+                    <div id="news-sidebar-container">
+                        <!-- Live Intelligence Feed will be injected here by app.js -->
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Tools Tab -->
-        <div id="tools-tab" class="tab-content">
-            <div class="content-grid">
-                <div class="card">
-                    <div class="card-header"><h2>ماشین‌حساب هزینه ساخت (AI)</h2></div>
-                    <form id="estimatorForm">
-                        <input type="number" id="area" placeholder="متراژ (متر مربع)" required>
-                        <select id="quality">
-                            <option value="standard">استاندارد</option>
-                            <option value="premium">درجه یک</option>
-                            <option value="luxury">لوکس</option>
-                        </select>
-                        <button type="submit" class="button">محاسبه</button>
-                    </form>
-                    <div id="estimatorResult"></div>
-                </div>
-                <div class="card">
-                     <div class="card-header"><h2>ترمینال ماینینگ CIV</h2></div>
-                     <p style="color: var(--theme-text-secondary); text-align: center;">وارد هسته انرژی شوید و استخراج توکن حاکمیتی را آغاز کنید.</p>
-                     <button id="open-miner-btn" class="button">ورود به هسته</button>
+
+            <!-- Tab 2: Market Analysis -->
+            <div id="analysis-content" class="tab-content">
+                <!-- TradingView Widget: Advanced Chart -->
+                <div class="tradingview-widget-container" style="height: 100%;">
+                  <div id="advanced-chart-widget" style="height: 100%;"></div>
+                  <script type="text/javascript">
+                  new TradingView.widget(
+                  {
+                    "autosize": true,
+                    "symbol": "BINANCE:BTCUSDT",
+                    "interval": "240",
+                    "timezone": "Etc/UTC",
+                    "theme": "dark",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "withdateranges": true,
+                    "hide_side_toolbar": false,
+                    "allow_symbol_change": true,
+                    "details": true,
+                    "hotlist": true,
+                    "calendar": true,
+                    "container_id": "advanced-chart-widget"
+                  }
+                  );
+                  </script>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Mining Terminal (Structure only, logic is in app.js) -->
-    <div id="mining-terminal">
-        <button id="close-terminal-btn">&times;</button>
-        <div id="balance-display">
-            <span>موجودی استخراج شده</span>
-            <div id="civ-balance-terminal">0.000000</div>
-        </div>
-        <div id="mine-click-area">
-            CIV
-            <span>Energy Core</span>
-        </div>
+            <!-- Tab 3: Tools -->
+            <div id="tools-content" class="tab-content">
+                <div class="tool-section">
+                    <h2>CIV MINING MODULE (Ghost Protocol)</h2>
+                    <div id="mining-terminal">
+                        <div class="terminal-header">
+                            <span>STATUS: OPERATIONAL</span>
+                            <span>HASH RATE: [SIMULATED]</span>
+                        </div>
+                        <div id="terminal-body">
+                            <!-- Log messages will appear here -->
+                        </div>
+                        <div class="terminal-footer">
+                            <span>BALANCE: <span id="civ-balance">0.0000</span> CIV</span>
+                            <span>Click anywhere in terminal to mine.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script src="app.js"></script>
