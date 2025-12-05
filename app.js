@@ -1,137 +1,179 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // --- CORE TAB NAVIGATION ---
-    const tabs = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+document.addEventListener('DOMContentLoaded', () => {
+    // --- STATE MANAGEMENT ---
+    const state = {
+        db: null,
+        lang: 'fa',
+        theme: 'dark',
+        currentPage: 'home'
+    };
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
+    // --- DOM SELECTORS ---
+    const dom = {
+        outlet: document.getElementById('content-outlet'),
+        nav: document.getElementById('main-nav'),
+        langSwitcher: document.getElementById('lang-switcher'),
+        themeSwitcher: document.getElementById('theme-switcher'),
+        body: document.body,
+        html: document.documentElement,
+        tickerContainer: document.getElementById('ticker-tape-container')
+    };
 
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-                if (content.id === tab.dataset.tab) {
-                    content.classList.add('active');
-                }
-            });
-        });
-    });
+    // --- CORE LOGIC ---
+    const init = async () => {
+        setupEventListeners();
+        loadInitialState();
+        await fetchData();
+        handleRouteChange();
+        window.addEventListener('hashchange', handleRouteChange);
+    };
 
-    // --- MINING TERMINAL MODULE ---
-    const miningTerminal = document.getElementById('mining-terminal');
-    const terminalBody = document.getElementById('terminal-body');
-    const civBalanceEl = document.getElementById('civ-balance');
-    let civBalance = 0.0;
+    const loadInitialState = () => {
+        state.theme = localStorage.getItem('theme') || 'dark';
+        state.lang = localStorage.getItem('lang') || 'fa';
+        applyTheme();
+        applyLanguage();
+    };
 
-    function addLog(message, type = 'info') {
-        const logEntry = document.createElement('div');
-        logEntry.className = `log-entry ${type}`;
-        logEntry.textContent = `> ${new Date().toLocaleTimeString()}: ${message}`;
-        terminalBody.appendChild(logEntry);
-        terminalBody.scrollTop = terminalBody.scrollHeight; // Auto-scroll
-    }
-
-    if (miningTerminal) {
-        miningTerminal.addEventListener('click', () => {
-            addLog('Mining attempt initiated...');
-            const success = Math.random() < 0.7; // 70% success rate
-            if (success) {
-                const minedAmount = parseFloat((Math.random() * 0.0005).toFixed(6));
-                civBalance += minedAmount;
-                civBalanceEl.textContent = civBalance.toFixed(6);
-                addLog(`Block found! +${minedAmount.toFixed(6)} CIV. New Balance: ${civBalance.toFixed(6)}`, 'success');
-            } else {
-                addLog('Mining failed. No block found.', 'error');
-            }
-        });
-        addLog('Ghost Protocol Initialized. Awaiting user input...');
-    }
-
-    // --- PROMETHEUS NEWS FEED MODULE ---
-    function loadNews() {
-        fetch('db.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data && data.newsFeed) {
-                    // Call renderNews to inject feed into the sidebar
-                    renderNews(data.newsFeed, 'news-sidebar-container');
-                } else {
-                    console.error('News feed data is missing or malformed in db.json');
-                }
-            })
-            .catch(error => {
-                console.error("Failed to load news feed:", error);
-                const newsContainer = document.getElementById('news-sidebar-container');
-                if(newsContainer) {
-                    newsContainer.innerHTML = `<p style="color: var(--error-color);">Error: Could not load intelligence feed. System disconnected.</p>`;
-                }
-            });
-    }
-
-    function renderNews(articles, targetElementId) {
-        const newsContainer = document.getElementById(targetElementId);
-        if (!newsContainer) {
-            console.error(`Target container '${targetElementId}' not found. Aborting render.`);
-            return;
+    const fetchData = async () => {
+        try {
+            const response = await fetch('db.json');
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            state.db = await response.json();
+        } catch (error) {
+            console.error("Fatal Error: Could not fetch db.json.", error);
+            dom.outlet.innerHTML = `<h1>Error</h1><p>Could not load essential data. Please check the console.</p>`;
         }
-    
-        // Purge existing content to prepare for the live feed.
-        newsContainer.innerHTML = ''; 
-    
-        const title = document.createElement('h2');
-        title.className = 'section-title';
-        title.textContent = 'Live Intelligence Feed';
-        newsContainer.appendChild(title);
-    
-        const feedContainer = document.createElement('div');
-        feedContainer.className = 'news-feed';
+    };
+
+    // --- ROUTING & RENDERING ---
+    const handleRouteChange = () => {
+        const pageId = window.location.hash.substring(1) || 'home';
+        state.currentPage = pageId;
+        renderNavigation();
+        renderPageContent(pageId);
+    };
+
+    const renderNavigation = () => {
+        if (!state.db) return;
+        const navItems = state.db.navigation[state.lang];
+        dom.nav.innerHTML = navItems.map(item =>
+            `<a href="#${item.id}" class="${item.id === state.currentPage ? 'active' : ''}">${item.text}</a>`
+        ).join('');
+    };
+
+    const renderPageContent = (pageId) => {
+        if (!state.db) return;
+        const pageInfo = state.db.pages[state.lang][pageId];
+        let html = `<h1>${pageInfo.title}</h1><p>${pageInfo.content}</p>`;
+
+        if (pageId === 'news') {
+            html += renderArticleGrid();
+        } else if (pageId === 'analysis') {
+            html += renderAnalysisWidget();
+        }
         
-        // Process each intelligence packet.
-        articles.forEach(article => {
-            const item = document.createElement('div');
-            item.className = 'news-item';
-            
-            const header = document.createElement('div');
-            header.className = 'news-header';
-            header.innerHTML = `
-                <span class="news-category ${article.category.toLowerCase().replace(' ', '-')}">${article.category}</span>
-                <span class="news-source">Source: ${article.source}</span>
-                <span class="news-timestamp">${new Date(article.timestamp).toLocaleString()}</span>
-            `;
-            
-            const headline = document.createElement('h3');
-            headline.className = 'news-headline';
-            headline.textContent = article.headline;
+        dom.outlet.innerHTML = html;
+
+        // Load page-specific scripts if any
+        if (pageId === 'analysis') {
+            loadScriptForAnalysis();
+        }
+    };
     
-            const summary = document.createElement('p');
-            summary.className = 'news-summary';
-            summary.textContent = article.summary;
-    
-            const tags = document.createElement('div');
-            tags.className = 'news-tags';
-            article.tags.forEach(tag => {
-                const tagSpan = document.createElement('span');
-                tagSpan.className = 'tag';
-                tagSpan.textContent = tag;
-                tags.appendChild(tagSpan);
-            });
-    
-            item.appendChild(header);
-            item.appendChild(headline);
-            item.appendChild(summary);
-            item.appendChild(tags);
-            
-            feedContainer.appendChild(item);
+    const renderArticleGrid = () => {
+        const articles = state.db.articles.filter(a => a.lang === state.lang);
+        let gridHtml = '<div class="grid-container">';
+        gridHtml += articles.map(article => `
+            <div class="card">
+                <img src="${article.image_url}" alt="${article.title}" class="card-image">
+                <div class="card-content">
+                    <h3>${article.title}</h3>
+                    <p>${article.summary}</p>
+                    <p class="card-meta">${article.category} - ${new Date(article.publish_date).toLocaleDateString()}</p>
+                </div>
+            </div>
+        `).join('');
+        gridHtml += '</div>';
+        return gridHtml;
+    };
+
+    const renderAnalysisWidget = () => {
+        return `
+            <div class="tradingview-widget-container" style="height: 600px;">
+                <div id="technical-analysis-widget"></div>
+            </div>
+        `;
+    };
+
+    const loadScriptForAnalysis = () => {
+        const script = document.createElement('script');
+        script.src = "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js";
+        script.async = true;
+        script.innerHTML = JSON.stringify({
+            "interval": "1D", "width": "100%", "isTransparent": true, "height": "100%",
+            "symbol": "BINANCE:BTCUSDT", "showIntervalTabs": true,
+            "locale": "en", "colorTheme": state.theme
         });
+        // Clear previous widget script and append new one
+        const widgetContainer = document.getElementById('technical-analysis-widget');
+        if(widgetContainer) {
+            widgetContainer.innerHTML = '';
+            widgetContainer.appendChild(script);
+        }
+    };
+
+    // --- UI & STATE SWITCHERS ---
+    const setupEventListeners = () => {
+        dom.themeSwitcher.addEventListener('click', toggleTheme);
+        dom.langSwitcher.addEventListener('click', toggleLanguage);
+    };
+
+    const toggleTheme = () => {
+        state.theme = state.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', state.theme);
+        applyTheme();
+        // Re-render current page to apply theme to dynamic widgets
+        handleRouteChange();
+    };
+
+    const toggleLanguage = () => {
+        state.lang = state.lang === 'fa' ? 'en' : 'fa';
+        localStorage.setItem('lang', state.lang);
+        applyLanguage();
+        renderNavigation();
+        renderPageContent(state.currentPage);
+    };
+
+    const applyTheme = () => {
+        dom.body.setAttribute('data-theme', state.theme);
+        dom.themeSwitcher.textContent = state.theme === 'dark' ? 'تم روشن' : 'تم تاریک';
+    };
+
+    const applyLanguage = () => {
+        dom.html.lang = state.lang;
+        dom.html.dir = state.lang === 'fa' ? 'rtl' : 'ltr';
+        dom.langSwitcher.textContent = state.lang === 'fa' ? 'EN' : 'FA';
+    };
     
-        newsContainer.appendChild(feedContainer);
-    }
-    
-    // Initial data load
-    loadNews();
+    // --- WIDGETS ---
+    const loadTickerTape = () => {
+        const script = document.createElement('script');
+        script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+        script.async = true;
+        script.innerHTML = JSON.stringify({
+          "symbols": [
+            { "proName": "BINANCE:BTCUSDT", "title": "Bitcoin" },
+            { "proName": "BINANCE:ETHUSDT", "title": "Ethereum" },
+            { "proName": "FX_IDC:XAUUSD", "title": "Gold" },
+            { "description": "S&P 500", "proName": "CME_MINI:ES1!" }
+          ],
+          "showSymbolLogo": true, "isTransparent": true, "displayMode": "adaptive",
+          "colorTheme": state.theme, "locale": "en"
+        });
+        dom.tickerContainer.appendChild(script);
+    };
+
+    // --- Let's go! ---
+    init();
+    loadTickerTape();
 });
