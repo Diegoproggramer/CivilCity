@@ -1,102 +1,52 @@
 {
-  "project": "Civil City Hyperion",
-  "version": "1.0",
+  "lang": {
+    "default": "fa",
+    "supported": ["fa", "en"]
+  },
   "navigation": {
     "fa": [
-      { "id": "home", "text": "خانه" },
-      { "id": "news", "text": "اخبار" },
-      { "id": "analysis", "text": "تحلیل و داده" }
+      { "id": "home", "text": "داشبورد اصلی" },
+      { "id": "analysis", "text": "تحلیل بازارها" },
+      { "id": "tools", "text": "ابزارها" },
+      { "id": "news", "text": "فید خبری" }
     ],
     "en": [
-      { "id": "home", "text": "Home" },
-      { "id": "news", "text": "News" },
-      { "id": "analysis", "text": "Data & Analysis" }
+      { "id": "home", "text": "Main Dashboard" },
+      { "id": "analysis", "text": "Market Analysis" },
+      { "id": "tools", "text": "Tools" },
+      { "id": "news", "text": "News Feed" }
     ]
   },
   "pages": {
     "fa": {
-      "home": {
-        "title": "به اکوسیستم هایپریون خوش آمدید",
-        "content": "اینجا مرکز فرماندهی و پورتال اصلی شما برای دسترسی به تمام ماژول‌های Civil City است."
-      },
-      "news": {
-        "title": "خبرخوان جامع",
-        "content": "آخرین اخبار ایران و جهان در حوزه‌های اقتصاد، تکنولوژی و ژئوپلیتیک."
-      },
-      "analysis": {
-        "title": "مرکز تحلیل داده",
-        "content": "دسترسی به ابزارهای تحلیل تکنیکال، داده‌های بازار و گزارش‌های استراتژیک."
-      }
+      "home": { "title": "به پورتال سیویل سیتی خوش آمدید", "content": "اینجا مرکز فرماندهی شما برای تحلیل و بررسی داده‌های حیاتی است." },
+      "analysis": { "title": "تحلیل تکنیکال پیشرفته", "content": "از ابزار زیر برای تحلیل نمودارها استفاده کنید." },
+      "tools": { "title": "جعبه ابزار", "content": "ابزارهای تحلیلی و محاسباتی در اینجا قرار خواهند گرفت." },
+      "news": { "title": "آخرین اخبار و تحلیل‌ها", "content": "" }
     },
     "en": {
-      "home": {
-        "title": "Welcome to the Hyperion Ecosystem",
-        "content": "This is your command center and main portal for accessing all Civil City modules."
-      },
-      "news": {
-        "title": "Comprehensive Newsfeed",
-        "content": "The latest news from Iran and the world in economics, technology, and geopolitics."
-      },
-      "analysis": {
-        "title": "Data Analysis Center",
-        "content": "Access to technical analysis tools, market data, and strategic reports."
-      }
+      "home": { "title": "Welcome to the Civil City Portal", "content": "This is your command center for analyzing critical data." },
+      "analysis": { "title": "Advanced Technical Analysis", "content": "Use the tool below to analyze charts." },
+      "tools": { "title": "Toolbox", "content": "Analytical and computational tools will be located here." },
+      "news": { "title": "Latest News & Analysis", "content": "" }
     }
   },
   "articles": [
     {
-      "id": "fa_tech_001",
-      "lang": "fa",
-      "category": "تکنولوژی",
-      "title": "ایران در آستانه پرتاب ماهواره جدید",
-      "summary": "سازمان فضایی ایران اعلام کرد ماهواره 'پارس-۲' با قابلیت تصویربرداری با وضوح بالا در ماه‌های آینده به فضا پرتاب خواهد شد.",
+      "id": "article-001",
+      "title": "تحلیل بنیادی بیت‌کوین در آستانه ۲۰۲۶",
+      "summary": "با نزدیک شدن به رویدادهای کلان اقتصادی، نگاهی عمیق به ارزش ذاتی بیت‌کوین می‌اندازیم.",
+      "category": "تحلیل بنیادی",
       "publish_date": "2025-12-05T10:00:00Z",
-      "image_url": "https://placehold.co/600x400/00a8ff/ffffff?text=Pars-2"
+      "image_url": "https://images.unsplash.com/photo-1621419736836-9d76de23556a?q=80&w=1920&auto=format&fit=crop"
     },
     {
-      "id": "fa_econ_001",
-      "lang": "fa",
-      "category": "اقتصاد",
-      "title": "بانک مرکزی از سیاست‌های جدید ارزی رونمایی کرد",
-      "summary": "بسته جدید ارزی با هدف کنترل نوسانات بازار و تسهیل تجارت برای واردکنندگان و صادرکنندگان معرفی شد.",
+      "id": "article-002",
+      "title": "نقش هوش مصنوعی در معاملات الگوریتمی",
+      "summary": "چگونه مدل‌های زبانی بزرگ (LLMs) در حال تغییر چهره بازارهای مالی هستند.",
+      "category": "تکنولوژی",
       "publish_date": "2025-12-04T15:30:00Z",
-      "image_url": "https://placehold.co/600x400/E9B824/ffffff?text=CBI"
-    },
-    {
-      "id": "en_global_001",
-      "lang": "en",
-      "category": "Global Politics",
-      "title": "UN Security Council Convenes for Emergency Session",
-      "summary": "An emergency session has been called to address the escalating tensions in the South China Sea.",
-      "publish_date": "2025-12-05T09:00:00Z",
-      "image_url": "https://placehold.co/600x400/007BFF/ffffff?text=UNSC"
-    },
-    {
-      "id": "en_finance_001",
-      "lang": "en",
-      "category": "Finance",
-      "title": "Federal Reserve Hints at Pausing Rate Hikes",
-      "summary": "Jerome Powell's latest speech suggests a potential halt in the aggressive rate hike cycle, causing a rally in the stock market.",
-      "publish_date": "2025-12-03T20:00:00Z",
-      "image_url": "https://placehold.co/600x400/28a745/ffffff?text=FED"
-    },
-    {
-      "id": "fa_geo_001",
-      "lang": "fa",
-      "category": "ژئوپلیتیک",
-      "title": "تحولات جدید در مذاکرات بر سر کریدور شمال-جنوب",
-      "summary": "ایران، روسیه و هند بر سر تسریع ساخت و ساز و رفع موانع گمرکی در کریدور حمل و نقل شمال-جنوب به توافقات جدیدی دست یافتند.",
-      "publish_date": "2025-12-02T12:00:00Z",
-      "image_url": "https://placehold.co/600x400/dc3545/ffffff?text=NSTC"
-    },
-    {
-      "id": "en_tech_002",
-      "lang": "en",
-      "category": "Technology",
-      "title": "Breakthrough in Quantum Computing Announced by MIT",
-      "summary": "Researchers at MIT have developed a new method for stabilizing qubits, a major step towards scalable quantum computers.",
-      "publish_date": "2025-12-01T18:00:00Z",
-      "image_url": "https://placehold.co/600x400/6f42c1/ffffff?text=Quantum"
+      "image_url": "https://images.unsplash.com/photo-1531771686259-c74637d35d79?q=80&w=1920&auto=format&fit=crop"
     }
   ]
 }
