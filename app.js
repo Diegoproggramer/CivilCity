@@ -96,4 +96,82 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial balance update
     updateBalanceDisplay();
 });
+// At the top of your app.js, add this function to fetch the data
+async function loadNews() {
+    try {
+        const response = await fetch('db.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.articles;
+    } catch (error) {
+        console.error("Could not load news data:", error);
+        return []; // Return empty array on error
+    }
+}
+
+// This function will take the news data and render it into the HTML
+function renderNews(articles) {
+    const newsContent = document.getElementById('news-content');
+    if (!newsContent) return;
+
+    // Clear previous static content
+    newsContent.innerHTML = ''; 
+
+    // Create a title
+    const title = document.createElement('h2');
+    title.className = 'section-title';
+    title.textContent = 'Live Intelligence Feed';
+    newsContent.appendChild(title);
+
+    // Create the container for news items
+    const feedContainer = document.createElement('div');
+    feedContainer.className = 'news-feed';
+    
+    articles.forEach(article => {
+        const item = document.createElement('div');
+        item.className = 'news-item';
+        
+        const header = document.createElement('div');
+        header.className = 'news-header';
+        header.innerHTML = `
+            <span class="news-category ${article.category.toLowerCase().replace(' ', '-')}">${article.category}</span>
+            <span class="news-source">Source: ${article.source}</span>
+            <span class="news-timestamp">${new Date(article.timestamp).toLocaleString()}</span>
+        `;
+        
+        const headline = document.createElement('h3');
+        headline.className = 'news-headline';
+        headline.textContent = article.headline;
+
+        const summary = document.createElement('p');
+        summary.className = 'news-summary';
+        summary.textContent = article.summary;
+
+        const tags = document.createElement('div');
+        tags.className = 'news-tags';
+        article.tags.forEach(tag => {
+            const tagSpan = document.createElement('span');
+            tagSpan.className = 'tag';
+            tagSpan.textContent = tag;
+            tags.appendChild(tagSpan);
+        });
+
+        item.appendChild(header);
+        item.appendChild(headline);
+        item.appendChild(summary);
+        item.appendChild(tags);
+        
+        feedContainer.appendChild(item);
+    });
+
+    newsContent.appendChild(feedContainer);
+}
+
+// At the end of your `document.addEventListener('DOMContentLoaded', ...)` function,
+// add this call to initialize the news feed.
+loadNews().then(articles => {
+    renderNews(articles);
+});
 
