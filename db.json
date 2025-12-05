@@ -1,35 +1,51 @@
 {
-  "lang": "fa",
+  "news_feed": [],
   "navigation": {
     "fa": [
-      { "id": "home", "text": "داشبورد", "type": "page" },
-      { "id": "analysis", "text": "تحلیل تکنیکال", "type": "page" },
-      { "id": "swap", "text": "صرافی (Swap)", "type": "component" },
-      { "id": "tokenomics", "text": "توکن CivilCity", "type": "component" },
-      { "id": "news", "text": "اخبار و مقالات", "type": "page" },
-      { "id": "tools", "text": "ابزارها", "type": "page" }
+      {
+        "category": "اصلی",
+        "items": [
+          { "id": "home", "text": "داشبورد", "type": "page" },
+          { "id": "analysis", "text": "تحلیل تکنیکال", "type": "page" }
+        ]
+      },
+      {
+        "category": "اکوسیستم",
+        "items": [
+          { "id": "swap", "text": "صرافی (Swap)", "type": "component" },
+          { "id": "tokenomics", "text": "توکن CivilCity", "type": "component" }
+        ]
+      },
+      {
+        "category": "اطلاعات و ابزار",
+        "items": [
+          { "id": "news", "text": "اخبار و مقالات", "type": "page" },
+          { "id": "tools", "text": "ابزارها", "type": "page" }
+        ]
+      }
     ],
     "en": [
-      { "id": "home", "text": "Dashboard", "type": "page" },
-      { "id": "analysis", "text": "Technical Analysis", "type": "page" },
-      { "id": "swap", "text": "Swap", "type": "component" },
-      { "id": "tokenomics", "text": "CivilCity Token", "type": "component" },
-      { "id": "news", "text": "News & Articles", "type": "page" },
-      { "id": "tools", "text": "Tools", "type": "page" }
+      {
+        "category": "Main",
+        "items": [
+          { "id": "home", "text": "Dashboard", "type": "page" },
+          { "id": "analysis", "text": "Technical Analysis", "type": "page" }
+        ]
+      },
+      {
+        "category": "Ecosystem",
+        "items": [
+          { "id": "swap", "text": "Swap", "type": "component" },
+          { "id": "tokenomics", "text": "CivilCity Token", "type": "component" }
+        ]
+      },
+      {
+        "category": "Intel & Tools",
+        "items": [
+          { "id": "news", "text": "News & Articles", "type": "page" },
+          { "id": "tools", "text": "Tools", "type": "page" }
+        ]
+      }
     ]
-  },
-  "pages": {
-    "fa": {
-      "home": { "title": "به پورتال سیویل سیتی خوش آمدید", "content": "اینجا مرکز فرماندهی شما برای تحلیل و بررسی داده‌های حیاتی است. وضعیت عملیاتی: %100" },
-      "analysis": { "title": "تحلیل تکنیکال پیشرفته", "content": "از ابزار زیر برای تحلیل بی‌رحمانه نمودارها استفاده کنید." },
-      "tools": { "title": "جعبه ابزار استراتژیک", "content": "ابزارهای تحلیلی و محاسباتی در اینجا قرار خواهند گرفت." },
-      "news": { "title": "فید اطلاعاتی", "content": "آخرین سیگنال‌ها و تحلیل‌های اطلاعاتی از سراسر وب." }
-    },
-    "en": {
-        "home": { "title": "Welcome to Civil City Portal", "content": "This is your command center for analyzing critical data. Operational Status: 100%" },
-        "analysis": { "title": "Advanced Technical Analysis", "content": "Use the tool below for a ruthless analysis of charts." },
-        "tools": { "title": "Strategic Toolbox", "content": "Analytical and computational tools will be located here." },
-        "news": { "title": "Intelligence Feed", "content": "Latest signals and intel from across the web." }
-    }
   }
 }
