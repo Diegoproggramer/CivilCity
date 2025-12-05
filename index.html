@@ -3,41 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Civil City - Command Center</title>
+    <title>سیویل سیتی | Civil City</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="dark">
+<body>
 
-    <header id="main-header">
-        <div class="logo">CIVIL CITY</div>
-        <div class="header-search">
-            <input type="search" placeholder="جستجو در پایگاه داده...">
-            <button>جستجو</button>
-        </div>
-        <div class="header-controls">
-            <button id="lang-switcher">EN</button>
-            <button id="theme-switcher">تغییر تم</button>
-        </div>
+    <!-- Header Section -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">سیویل سیتی</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">خرید ارز دیجیتال</a></li>
+                <li><a href="#">قیمت لحظه‌ای</a></li>
+                <li class="dropdown">
+                    <a href="#">پشتیبانی <span class="arrow-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">ارتباط با ما</a></li>
+                    </ul>
+                </li>
+                <li><a href="pages/articles.html">مقالات</a></li>
+                <li><a href="pages/civil-calc.html">محاسبات عمرانی</a></li>
+                <li><a href="pages/news.html">اخبار</a></li>
+                <li><a href="pages/about-coin.html">درباره کوین سیویل سیتی</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="pages/login.html" class="btn btn-secondary">ورود</a>
+                <a href="pages/register.html" class="btn btn-primary">ثبت نام</a>
+            </div>
+            <div class="mobile-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
     </header>
 
-    <div class="main-container">
-        <aside id="sidebar">
-            <nav id="sidebar-nav">
-                <!-- Navigation links will be injected here by app.js -->
-            </nav>
-        </aside>
-        <main id="content-outlet">
-            <!-- Dynamic content will be rendered here -->
-        </main>
-    </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>صرافی ارز دیجیتال <span class="highlight">سیویل سیتی</span></h1>
+                <h2>فروش و خرید ارز دیجیتال در صرافی سیویل سیتی</h2>
+                <p>
+                    خرید ارز دیجیتال در "سیویل سیتی"، به عنوان اولین سامانه تخصصی ارزهای دیجیتال برای جامعه مهندسین کشور، انجام می‌شود که با سبک و استانداردهای جدید، سرویس‌های نگهداری و خرید و فروش ارزهای الکترونیک را برای افراد حقیقی و حقوقی آماده کرده است. ما امروز به عنوان یک پلتفرم پیشرو در این عرصه، افتخار می‌کنیم که در افزایش سهم تجارت الکترونیک، در تولید کلاس ملی و کمک به رشد و توسعه کسب‌وکارها، نقشی سازنده و موثری داشته باشیم.
+                </p>
+                <div class="hero-buttons">
+                    <a href="pages/register.html" class="btn btn-primary">ورود به حساب</a>
+                    <a href="pages/register.html" class="btn btn-secondary">ثبت نام و رکورد پول</a>
+                </div>
+            </div>
+            <div class="hero-form">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label>دریافت می‌کنید</label>
+                        <input type="text" value="۰" placeholder="نرخ">
+                    </div>
+                    <div class="form-group">
+                        <label>پرداخت می‌کنید</label>
+                        <div class="input-with-icon">
+                            <input type="text" value="نرخ IRT تومان" placeholder="نرخ IRT تومان">
+                            <img src="https://flagcdn.com/w20/ir.png" alt="Iran Flag">
+                            <span>Toman</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-form-submit">حفظ رمز ارزها، تدبیر آینده، سرمایه نمایش کلید</button>
+                </div>
+            </div>
+        </section>
 
-    <footer id="footer-ticker">
-        <div id="ticker-tape-container"></div>
+        <!-- Crypto Price Table Section -->
+        <section class="crypto-table-section">
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>قیمت لحظه‌ای ارزها</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ارز</th>
+                            <th>قیمت (دلاری)</th>
+                            <th>قیمت فروش (تومان)</th>
+                            <th>قیمت خرید (تومان)</th>
+                            <th>تغییرات</th>
+                            <th>نمودار</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="crypto-table-body">
+                        <!-- Data will be injected by app.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="section-title">
+                <h3>برترین ویژگی‌های سرویس سیویل سیتی</h3>
+                <p>سیویل سیتی - اولین سرویس کیف پول اختصاصی مهندسان ایران</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="https://kifpool.me/statics/2024/05/icons-wallet.svg" alt="Icon"></div>
+                    <h4>یک کیف پول کامل!</h4>
+                    <p>کیف پول دارای بیش از ۵۰۰ رمز ارز متنوع با قابلیت‌های متفاوت است و نیاز شما برای خرید و فروش تمامی رمز ارزها را برآورده خواهد کرد.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="https://kifpool.me/statics/2024/05/icons-free.svg" alt="Icon"></div>
+                    <h4>تجربه بدون کارمزد</h4>
+                    <p>نقل و انتقالات داخلی کیف پول، بدون هیچ‌گونه کارمزد و محدودیتی خواهد بود.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="https://kifpool.me/statics/2024/05/icons-support.svg" alt="Icon"></div>
+                    <h4>ما در کنار شما خواهیم بود</h4>
+                    <p>پشتیبانی کیف پول، ۲۴ ساعت و ۷ روز هفته است و شما را در مسیر خرید و فروش رمز ارزها تنها نخواهیم گذاشت.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="https://kifpool.me/statics/2024/05/icons-security.svg" alt="Icon"></div>
+                    <h4>امنیت کامل و پایدار</h4>
+                    <p>تمامی تراکنش‌های شما در کیف پول، در بستری امن و مطمئن انجام شده و دارای شما محفوظ خواهد بود.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mining Page Link -->
+        <section class="mining-promo-section">
+             <a href="pages/mining.html" class="btn btn-primary btn-large">رفتن به صفحه ماینینگ سیویل کوین</a>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>سیویل سیتی</h4>
+                <p>اولین پلتفرم جامع ارزهای دیجیتال برای جامعه مهندسین عمران و معماری. آینده سرمایه‌گذاری خود را با ما بسازید.</p>
+            </div>
+            <div class="footer-column">
+                <h4>لینک‌های سریع</h4>
+                <ul>
+                    <li><a href="pages/articles.html">مقالات</a></li>
+                    <li><a href="#">قیمت لحظه‌ای</a></li>
+                    <li><a href="pages/about-coin.html">کوین سیویل سیتی</a></li>
+                    <li><a href="#">پشتیبانی</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>قوانین و مقررات</h4>
+                <ul>
+                    <li><a href="#">شرایط استفاده</a></li>
+                    <li><a href="#">حریم خصوصی</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>تماس با ما</h4>
+                <p>دانشگاه تبریز، دانشکده فنی و مهندسی</p>
+                <p>ایمیل: support@civilcity.dev</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1404 - تمام حقوق برای پلتفرم سیویل سیتی محفوظ است.</p>
+        </div>
     </footer>
 
-    <!-- CORE LIBRARIES - DO NOT MOVE -->
-    <script src="https://s3.tradingview.com/tv.js"></script>
+    <script src="db.js"></script>
     <script src="app.js"></script>
-
 </body>
 </html>
