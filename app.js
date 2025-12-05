@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // This is the final step in the boot sequence.
     loadNews().then(articles => {
         if (articles.length > 0) {
-            renderNews(articles);
+               renderNews(articles, 'news-sidebar-container');
             console.log("Prometheus Module: 'All-Seeing Eye' is active.");
         } else {
             console.error("Prometheus Module: Failed to load intelligence data.");
