@@ -1,51 +1,64 @@
-{
-  "news_feed": [],
-  "navigation": {
-    "fa": [
-      {
-        "category": "اصلی",
-        "items": [
-          { "id": "home", "text": "داشبورد", "type": "page" },
-          { "id": "analysis", "text": "تحلیل تکنیکال", "type": "page" }
-        ]
-      },
-      {
-        "category": "اکوسیستم",
-        "items": [
-          { "id": "swap", "text": "صرافی (Swap)", "type": "component" },
-          { "id": "tokenomics", "text": "توکن CivilCity", "type": "component" }
-        ]
-      },
-      {
-        "category": "اطلاعات و ابزار",
-        "items": [
-          { "id": "news", "text": "اخبار و مقالات", "type": "page" },
-          { "id": "tools", "text": "ابزارها", "type": "page" }
-        ]
-      }
-    ],
-    "en": [
-      {
-        "category": "Main",
-        "items": [
-          { "id": "home", "text": "Dashboard", "type": "page" },
-          { "id": "analysis", "text": "Technical Analysis", "type": "page" }
-        ]
-      },
-      {
-        "category": "Ecosystem",
-        "items": [
-          { "id": "swap", "text": "Swap", "type": "component" },
-          { "id": "tokenomics", "text": "CivilCity Token", "type": "component" }
-        ]
-      },
-      {
-        "category": "Intel & Tools",
-        "items": [
-          { "id": "news", "text": "News & Articles", "type": "page" },
-          { "id": "tools", "text": "Tools", "type": "page" }
-        ]
-      }
-    ]
-  }
-}
+// db.js - Mock Database for Cryptocurrency Data
+
+const cryptoData = [
+    {
+        name: 'بیت‌کوین',
+        ticker: 'BTC',
+        logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png',
+        priceUSD: 90415,
+        priceSellIR: '10,186,293,000',
+        priceBuyIR: '10,185,293,000',
+        change: -0.56,
+        chartImage: 'https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/1.svg' // Placeholder chart
+    },
+    {
+        name: 'اتریوم',
+        ticker: 'ETH',
+        logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
+        priceUSD: 3105,
+        priceSellIR: '372,279,141',
+        priceBuyIR: '372,179,141',
+        change: -0.19,
+        chartImage: 'https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/1027.svg'
+    },
+    {
+        name: 'ریپل',
+        ticker: 'XRP',
+        logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/52.png',
+        priceUSD: 0.6081,
+        priceSellIR: '75,023',
+        priceBuyIR: '74,923',
+        change: 0.43,
+        chartImage: 'https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/52.svg'
+    },
+    {
+        name: 'تتر',
+        ticker: 'USDT',
+        logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/825.png',
+        priceUSD: 1,
+        priceSellIR: '110,891',
+        priceBuyIR: '110,791',
+        change: 0.00,
+        chartImage: 'https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/825.svg'
+    },
+    {
+        name: 'بیت‌کوین کش',
+        ticker: 'BCH',
+        logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1831.png',
+        priceUSD: 578,
+        priceSellIR: '70,299,622',
+        priceBuyIR: '70,199,622',
+        change: 0.28,
+        chartImage: 'https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/1831.svg'
+    },
+    {
+        name: 'لایت‌کوین',
+        ticker: 'LTC',
+        logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/2.png',
+        priceUSD: 82.07,
+        priceSellIR: '9,971,232',
+        priceBuyIR: '9,961,232',
+        change: -1.58,
+        chartImage: 'https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/2.svg'
+    }
+];
