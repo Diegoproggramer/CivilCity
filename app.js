@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const dom = {
         outlet: document.getElementById('content-outlet'),
-        nav: document.getElementById('main-nav'),
+        nav: document.getElementById('sidebar-nav'),
         langSwitcher: document.getElementById('lang-switcher'),
         themeSwitcher: document.getElementById('theme-switcher'),
         tickerContainer: document.getElementById('ticker-tape-container')
