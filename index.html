@@ -3,68 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Civil City - Command Platform</title>
+    <title>Civil City - Chimera Platform</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root { --primary-color: #00f7ff; --secondary-color: #ffd700; --bg-color: #0a0a14; --card-bg: rgba(10, 20, 30, 0.8); }
-        body { background-color: var(--bg-color); color: #e0e0e0; font-family: 'Courier New', monospace; margin: 0; padding: 0; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid var(--primary-color); padding-bottom: 20px; }
-        .header h1 { color: var(--primary-color); text-shadow: 0 0 10px var(--primary-color); }
-        nav { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; background: var(--card-bg); padding: 10px; border-radius: 10px; border: 1px solid #333; }
-        .nav-tab { background: none; border: 1px solid transparent; color: #aaa; padding: 10px 20px; cursor: pointer; font-size: 16px; transition: all 0.3s; }
-        .nav-tab:hover { color: var(--secondary-color); }
-        .nav-tab.active { color: var(--primary-color); border-bottom: 1px solid var(--primary-color); font-weight: bold; }
+        /* --- PROJECT CHIMERA: AESTHETIC OVERHAUL --- */
+        :root {
+            --theme-purple: #8a2be2;
+            --theme-purple-light: #9932cc;
+            --theme-bg-deep: #0d0c1d;
+            --theme-bg-content: #1e1b33;
+            --theme-card-bg: rgba(20, 18, 40, 0.85);
+            --theme-text-primary: #f0f0f0;
+            --theme-text-secondary: #a0a0c0;
+            --theme-border: rgba(138, 43, 226, 0.3);
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap');
+        body {
+            background-color: var(--theme-bg-deep);
+            color: var(--theme-text-primary);
+            font-family: 'Vazirmatn', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: radial-gradient(circle at top left, rgba(138, 43, 226, 0.1), transparent 30%),
+                              radial-gradient(circle at bottom right, rgba(138, 43, 226, 0.1), transparent 30%);
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 20px; padding-bottom: 20px; }
+        .header h1 { color: var(--theme-text-primary); font-weight: 700; letter-spacing: 2px; }
+        nav { display: flex; justify-content: center; gap: 5px; margin-bottom: 30px; background: var(--theme-card-bg); padding: 10px; border-radius: 12px; border: 1px solid var(--theme-border); }
+        .nav-tab { background: transparent; border: none; color: var(--theme-text-secondary); padding: 12px 25px; cursor: pointer; font-size: 16px; font-weight: 400; transition: all 0.3s; border-radius: 8px; }
+        .nav-tab:hover { color: var(--theme-text-primary); background-color: rgba(255, 255, 255, 0.05); }
+        .nav-tab.active { color: #fff; background-color: var(--theme-purple); font-weight: 700; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .card { background: var(--card-bg); border: 1px solid var(--primary-color); border-radius: 10px; padding: 20px; backdrop-filter: blur(5px); box-shadow: 0 0 15px rgba(0, 247, 255, 0.2); }
-        .card h2 { color: var(--secondary-color); margin-top: 0; border-bottom: 1px solid #555; padding-bottom: 10px; }
-        #news-ticker { background: #111; border: 1px solid var(--secondary-color); padding: 10px; text-align: center; margin-bottom: 30px; overflow: hidden; white-space: nowrap; }
-        #news-ticker-content { display: inline-block; transition: opacity 0.5s; }
-        .tradingview-widget-container { height: 400px; }
-        input, select, button { background: #222; border: 1px solid var(--primary-color); color: #fff; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-top: 10px; }
-        button, .button { cursor: pointer; background: #005555; font-weight: bold; transition: all 0.2s; text-align: center; }
-        button:hover, .button:hover { background-color: #008888; box-shadow: 0 0 10px var(--primary-color); }
-        #estimatorResult { margin-top: 15px; font-weight: bold; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .card { background: var(--theme-card-bg); border: 1px solid var(--theme-border); border-radius: 12px; padding: 25px; backdrop-filter: blur(8px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(138, 43, 226, 0.2); }
+        .card h2 { color: var(--theme-purple-light); margin-top: 0; border-bottom: 1px solid var(--theme-border); padding-bottom: 15px; font-size: 1.2em; }
+        #news-ticker { background: var(--theme-card-bg); border: 1px solid var(--theme-border); padding: 12px; text-align: center; margin-bottom: 30px; overflow: hidden; white-space: nowrap; border-radius: 8px; }
+        .tradingview-widget-container { height: 450px; }
+        input, select, button { font-family: 'Vazirmatn', sans-serif; background: #2a2647; border: 1px solid var(--theme-border); color: var(--theme-text-primary); padding: 12px; border-radius: 8px; width: 100%; box-sizing: border-box; margin-top: 10px; }
+        button, .button { cursor: pointer; background: var(--theme-purple); font-weight: 700; transition: all 0.2s; text-align: center; border: 1px solid var(--theme-purple); }
+        button:hover, .button:hover { background-color: var(--theme-purple-light); box-shadow: 0 0 15px var(--theme-purple); }
+        #estimatorResult { margin-top: 20px; font-weight: bold; text-align: center; font-size: 1.1em; }
         
-        /* Mining Terminal Styles */
-        #mining-terminal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 10000; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
-        #close-terminal-btn { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid #888; color: #888; font-size: 24px; width: 40px; height: 40px; border-radius: 50%; }
-        #mine-click-area { width: 250px; height: 250px; background: radial-gradient(circle, #003333, #0a0a14); border: 5px solid var(--primary-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 48px; color: var(--primary-color); text-shadow: 0 0 20px var(--primary-color); cursor: pointer; user-select: none; transition: transform 0.1s; position: relative; }
-        .floating-text { position: absolute; font-size: 24px; color: var(--secondary-color); animation: float-up 1s forwards; opacity: 1; pointer-events: none; }
-        @keyframes float-up { to { transform: translateY(-100px); opacity: 0; } }
-        #balance-display { text-align: center; margin-bottom: 30px; }
-        #balance-display span { font-size: 16px; color: #888; }
-        #civ-balance-terminal { font-size: 48px; font-weight: bold; color: #fff; }
+        /* --- MINING TERMINAL 2.0: ENERGY CORE --- */
+        #mining-terminal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0d0c1d; z-index: 10000; flex-direction: column; justify-content: center; align-items: center; }
+        #close-terminal-btn { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid #555; color: #888; font-size: 24px; width: 44px; height: 44px; border-radius: 50%; }
+        @keyframes pulse-glow { 0% { box-shadow: 0 0 20px 5px rgba(138, 43, 226, 0.4); } 50% { box-shadow: 0 0 35px 15px rgba(138, 43, 226, 0.7); } 100% { box-shadow: 0 0 20px 5px rgba(138, 43, 226, 0.4); } }
+        #mine-click-area { width: 280px; height: 280px; background: radial-gradient(circle, #4a148c, #1a1a3a); border: 3px solid var(--theme-purple); border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 60px; color: #fff; cursor: pointer; user-select: none; transition: transform 0.1s; position: relative; animation: pulse-glow 4s infinite ease-in-out; }
+        #mine-click-area span { font-size: 18px; color: #ddd; margin-top: 10px; }
+        .floating-text { position: absolute; font-size: 28px; font-weight: bold; color: #f0e68c; animation: float-up 1.2s forwards; opacity: 1; pointer-events: none; text-shadow: 0 0 5px #000; }
+        @keyframes float-up { to { transform: translateY(-120px); opacity: 0; } }
+        #balance-display { text-align: center; margin-bottom: 40px; }
+        #balance-display span { font-size: 18px; color: var(--theme-text-secondary); }
+        #civ-balance-terminal { font-size: 52px; font-weight: 700; color: var(--theme-text-primary); letter-spacing: 1px; }
+
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
             <h1>CIVIL CITY</h1>
-            <p id="brand-story">درحال بارگذاری داده‌های استراتژیک...</p>
+            <p id="brand-story" style="color: var(--theme-text-secondary);">درحال بارگذاری داده‌های استراتژیک از شبکه...</p>
         </header>
 
         <nav>
-            <button class="nav-tab" data-target="#command-center-tab">اتاق فرماندهی</button>
+            <button class="nav-tab" data-target="#trading-floor-tab">طبقه معاملات</button>
+            <button class="nav-tab" data-target="#command-center-tab">اتاق فرمان</button>
             <button class="nav-tab" data-target="#civ-protocol-tab">پروتکل CIV</button>
             <button class="nav-tab" data-target="#intel-database-tab">پایگاه داده تحلیلی</button>
         </nav>
+        
+        <!-- NEW Tab 0: Trading Floor -->
+        <div id="trading-floor-tab" class="tab-content">
+            <div class="card">
+                <h2>نمای کلی بازار (Market Overview)</h2>
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container" style="height: 600px;">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                    { "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "fa_IR", "width": "100%", "height": "100%", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "tabs": [ { "title": "ارزهای دیجیتال", "symbols": [ { "s": "BINANCE:BTCUSDT" }, { "s": "BINANCE:ETHUSDT" }, { "s": "KUCOIN:USDTIRR", "d": "تتر/تومان" }, { "s": "BINANCE:BNBUSDT" }, { "s": "BINANCE:XRPUSDT" }, { "s": "BINANCE:SOLUSDT" } ], "originalTitle": "Forex" } ] }
+                    </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </div>
+        </div>
 
         <!-- Tab 1: Command Center -->
         <div id="command-center-tab" class="tab-content">
             <div id="news-ticker"><span id="news-ticker-content">درحال بارگذاری اخبار...</span></div>
             <div class="grid">
-                <div class="card"><h2>نرخ لحظه‌ای BTC/USDT</h2><div class="tradingview-widget-container" id="tv-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>{"symbols": [["BINANCE:BTCUSDT|1D"]],"chartOnly": false,"width": "100%","height": "100%","locale": "fa_IR","colorTheme": "dark","autosize": true,"showVolume": false,"showMA": false,"hideDateRanges": false,"hideMarketStatus": false,"hideSymbolLogo": false,"scalePosition": "right","scaleMode": "Normal","fontFamily": "Trebuchet MS, sans-serif","fontSize": "10","noTimeScale": false,"valuesTracking": "1","changeMode": "price-and-percent","chartType": "area","maLineColor": "#2962FF","maLineWidth": 1,"maLength": 9,"lineWidth": 2,"lineType": 0,"dateRanges": ["1d","1w","1m"],"isTransparent": true}</script></div></div>
                 <div class="card"><h2>ماشین‌حساب هزینه ساخت (AI)</h2><form id="estimatorForm"><input type="number" id="area" placeholder="متراژ (متر مربع)" required><select id="quality"><option value="standard">استاندارد</option><option value="premium">درجه یک</option><option value="luxury">لوکس</option></select><button type="submit">محاسبه</button></form><div id="estimatorResult"></div></div>
                 <div class="card"><h2>تحلیل بازار مسکن</h2><canvas id="housingChart"></canvas></div>
                 <div class="card"><h2>تحلیل بازار فولاد</h2><canvas id="steelChart"></canvas></div>
-            </div>
-            <div class="card" style="margin-top: 30px; text-align: center;">
-                <h2>ترمینال ماینینگ CIV</h2>
-                <p>وارد ترمینال شوید و استخراج توکن حاکمیتی Civil City را آغاز کنید.</p>
-                <button id="open-miner-btn" class="button" style="padding: 15px 40px; font-size: 18px;">ورود به ترمینال</button>
+                <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                    <h2>ترمینال ماینینگ CIV</h2>
+                    <p style="color: var(--theme-text-secondary);">وارد هسته انرژی شوید و استخراج توکن حاکمیتی را آغاز کنید.</p>
+                    <button id="open-miner-btn" class="button" style="padding: 15px 40px; font-size: 18px; margin-top: auto;">ورود به هسته</button>
+                </div>
             </div>
         </div>
 
@@ -72,14 +109,14 @@
         <div id="civ-protocol-tab" class="tab-content">
             <div class="card">
                 <h2>توکن CIV: اقتصاد اکوسیستم</h2>
-                <p>توکن CIV، توکن حاکمیتی و کاربردی پلتفرم Civil City است. این توکن برای دسترسی به تحلیل‌های ویژه، مشارکت در تصمیم‌گیری‌های پلتفرم و پاداش به مشارکت‌کنندگان فعال طراحی شده است.</p>
+                <p>توکن CIV، خون جاری در رگ‌های اکوسیستم Civil City است. این توکن برای دسترسی به تحلیل‌های طبقه‌بندی شده، حق رای در حاکمیت غیرمتمرکز پلتفرم (DAO) و پاداش به اپراتورهای فعال طراحی شده است.</p>
                 <h3>مشخصات توکن (Tokenomics)</h3>
-                <ul>
+                <ul style="line-height: 2;">
                     <li><strong>نام:</strong> Civil City Token</li>
                     <li><strong>نماد:</strong> CIV</li>
                     <li><strong>حداکثر عرضه:</strong> ۱,۰۰۰,۰۰۰,۰۰۰</li>
-                    <li><strong>شبکه:</strong> (در مرحله Testnet)</li>
-                    <li><strong>کاربرد:</strong> دسترسی ویژه، حاکمیت، پاداش</li>
+                    <li><strong>شبکه:</strong> Testnet (شبیه‌سازی شده)</li>
+                    <li><strong>کاربردها:</strong> دسترسی ویژه، حاکمیت (Staking)، پاداش مشارکت</li>
                 </ul>
             </div>
         </div>
@@ -87,13 +124,20 @@
         <!-- Tab 3: Intel Database -->
         <div id="intel-database-tab" class="tab-content">
             <div class="card">
-                <h2>پایگاه داده تحلیلی</h2>
-                <p>این بخش به زودی با تحلیل‌های عمیق از بازارهای جهانی ساخت و ساز، روندهای نوظهور در صنعت کریپتو و گزارش‌های اختصاصی از اقتصاد کلان به‌روزرسانی خواهد شد.</p>
+                <h2>پایگاه داده تحلیلی: تحلیل تکنیکال BTC</h2>
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container" style="height: 500px;">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+                    { "interval": "1D", "width": "100%", "isTransparent": true, "height": "100%", "symbol": "BINANCE:BTCUSDT", "showIntervalTabs": true, "locale": "fa_IR", "colorTheme": "dark" }
+                    </script>
+                </div>
+                <!-- TradingView Widget END -->
             </div>
         </div>
     </div>
 
-    <!-- Mining Terminal Modal -->
+    <!-- Mining Terminal 2.0 -->
     <div id="mining-terminal">
         <button id="close-terminal-btn">&times;</button>
         <div id="balance-display">
@@ -102,9 +146,17 @@
         </div>
         <div id="mine-click-area">
             CIV
+            <span>Energy Core</span>
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Minor script adjustment for new tab structure
+        document.addEventListener('DOMContentLoaded', () => {
+             // Activate the first tab by default
+            document.querySelector('.nav-tab[data-target="#trading-floor-tab"]').click();
+        });
+    </script>
 </body>
 </html>
