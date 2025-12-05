@@ -1,22 +1,43 @@
-// AT THE VERY TOP OF APP.JS
+// =================================================================================
+// PROJECT LEVIATHAN - Core Application Logic (app.js)
+// PHASE 5: PROJECT PROMETHEUS - "The All-Seeing Eye" Module Integration
+// =================================================================================
+
+// ---------------------------------------------------------------------------------
+// MODULE 1: DYNAMIC NEWS FEED ("The All-Seeing Eye")
+// ---------------------------------------------------------------------------------
+
+/**
+ * Fetches news articles from the JSON database.
+ * This is the foundational function for our intelligence stream.
+ */
 async function loadNews() {
     try {
         const response = await fetch('db.json');
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`CRITICAL: Data stream failed. Status: ${response.status}`);
         }
         const data = await response.json();
         return data.articles;
     } catch (error) {
-        console.error("Could not load news data:", error);
+        console.error("Intelligence Feed Compromised:", error);
+        // In a real-world scenario, we would have fallbacks. For now, we return an empty array.
         return [];
     }
 }
 
+/**
+ * Renders the fetched news articles into the 'news-content' tab.
+ * This function translates raw data into a structured, high-impact visual format.
+ */
 function renderNews(articles) {
     const newsContent = document.getElementById('news-content');
-    if (!newsContent) return;
+    if (!newsContent) {
+        console.error("Target container 'news-content' not found. Aborting render.");
+        return;
+    }
 
+    // Purge existing content to prepare for the live feed.
     newsContent.innerHTML = ''; 
 
     const title = document.createElement('h2');
@@ -27,6 +48,7 @@ function renderNews(articles) {
     const feedContainer = document.createElement('div');
     feedContainer.className = 'news-feed';
     
+    // Process each intelligence packet.
     articles.forEach(article => {
         const item = document.createElement('div');
         item.className = 'news-item';
@@ -66,100 +88,83 @@ function renderNews(articles) {
 
     newsContent.appendChild(feedContainer);
 }
-// --- PROJECT LEVIATHAN: APPLICATION LOGIC (app.js) ---
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Global Data Fetch ---
-    fetch('db.json')
-        .then(response => response.json())
-        .then(data => {
-            // Populate dynamic content
-            document.getElementById('brand-story').textContent = data.brandStory;
-            // Removed chart logic as we are using more TradingView widgets
-        })
-        .catch(error => console.error('Error fetching db.json:', error));
 
-    // --- Tab Navigation Logic ---
-    const tabs = document.querySelectorAll('.main-nav button');
-    const tabContents = document.querySelectorAll('.tab-content');
+
+// ---------------------------------------------------------------------------------
+// CORE INITIALIZATION SEQUENCE
+// This event listener is the trigger for the entire application.
+// It ensures all systems are online only after the DOM is fully loaded.
+// ---------------------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
     
+    // --- System 1: Tab Navigation Control ---
+    const tabs = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Deactivate all
+            // Deactivate all tabs and content
             tabs.forEach(t => t.classList.remove('active'));
             tabContents.forEach(c => c.classList.remove('active'));
 
-            // Activate clicked tab
+            // Activate the clicked tab and its corresponding content
             tab.classList.add('active');
-            const target = document.querySelector(tab.dataset.target);
-            if (target) {
-                target.classList.add('active');
+            const targetContent = document.getElementById(tab.dataset.tab);
+            if (targetContent) {
+                targetContent.classList.add('active');
             }
         });
     });
 
-    // Default to the first tab
-    if (tabs.length > 0) {
-        tabs[0].click();
+    // --- System 2: Simulated Mining Terminal ---
+    const terminalBody = document.getElementById('terminal-body');
+    const balanceElement = document.getElementById('civ-balance');
+    const civPerClick = 10;
+    let civBalance = parseFloat(localStorage.getItem('civBalance')) || 0;
+
+    function updateBalance() {
+        balanceElement.textContent = civBalance.toFixed(4);
+        localStorage.setItem('civBalance', civBalance);
     }
 
-    // --- AI Estimator Logic ---
-    const estimatorForm = document.getElementById('estimatorForm');
-    if (estimatorForm) {
-        estimatorForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const area = parseFloat(document.getElementById('area').value);
-            const quality = document.getElementById('quality').value;
-            let costPerMeter;
-            switch(quality) {
-                case 'premium': costPerMeter = 15000000; break;
-                case 'luxury': costPerMeter = 25000000; break;
-                default: costPerMeter = 9000000;
-            }
-            const totalCost = area * costPerMeter;
-            document.getElementById('estimatorResult').textContent = `هزینه تخمینی: ${totalCost.toLocaleString('fa-IR')} تومان`;
+    function logToTerminal(message, type = 'info') {
+        const logEntry = document.createElement('div');
+        logEntry.className = `terminal-log ${type}`;
+        logEntry.innerHTML = `<span>[${new Date().toLocaleTimeString()}]</span> ${message}`;
+        terminalBody.appendChild(logEntry);
+        // Auto-scroll to the bottom
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    if (document.getElementById('mining-terminal')) {
+        document.getElementById('mining-terminal').addEventListener('click', () => {
+            civBalance += civPerClick;
+            updateBalance();
+            logToTerminal(`+${civPerClick} CIV mined. New Balance: ${civBalance.toFixed(4)}`, 'success');
         });
     }
 
-    // --- Mining Terminal Logic ---
-    const miningTerminal = document.getElementById('mining-terminal');
-    const openMinerBtn = document.getElementById('open-miner-btn');
-    const closeTerminalBtn = document.getElementById('close-terminal-btn');
-    const mineClickArea = document.getElementById('mine-click-area');
-    const civBalanceTerminal = document.getElementById('civ-balance-terminal');
+    // Initial state setup
+    updateBalance();
+    logToTerminal("CIV Mining Protocol Initialized. System online. Awaiting user input.", "system");
 
-    let civBalance = parseFloat(localStorage.getItem('civBalance_v2')) || 0;
-    const MINE_INCREMENT = 0.000035; // Example value
+    // --- System 3: TradingView Widget Injection ---
+    // The widget script is already in index.html, this is a placeholder for future JS control if needed.
+    // Example: Dynamically changing the symbol would happen here.
 
-    const updateBalanceDisplay = () => {
-        civBalanceTerminal.textContent = civBalance.toFixed(6);
-    };
+    // --- System 4: Activate Intelligence Feed ---
+    // This is the final step in the boot sequence.
+    loadNews().then(articles => {
+        if (articles.length > 0) {
+            renderNews(articles);
+            console.log("Prometheus Module: 'All-Seeing Eye' is active.");
+        } else {
+            console.error("Prometheus Module: Failed to load intelligence data.");
+        }
+    });
 
-    if (openMinerBtn) {
-        openMinerBtn.addEventListener('click', () => miningTerminal.style.display = 'flex');
+    // Set a default active tab if none are active
+    if (!document.querySelector('.tab-button.active')) {
+        document.querySelector('.tab-button').click();
     }
-    if (closeTerminalBtn) {
-        closeTerminalBtn.addEventListener('click', () => miningTerminal.style.display = 'none');
-    }
-    if (mineClickArea) {
-        mineClickArea.addEventListener('click', (e) => {
-            civBalance += MINE_INCREMENT;
-            localStorage.setItem('civBalance_v2', civBalance.toString());
-            updateBalanceDisplay();
-
-            // Create floating text effect
-            const floatingText = document.createElement('div');
-            floatingText.className = 'floating-text';
-            floatingText.textContent = `+${MINE_INCREMENT.toFixed(6)}`;
-            floatingText.style.left = `${e.clientX - mineClickArea.getBoundingClientRect().left - 30}px`;
-            floatingText.style.top = `${e.clientY - mineClickArea.getBoundingClientRect().top - 20}px`;
-            mineClickArea.appendChild(floatingText);
-            setTimeout(() => floatingText.remove(), 1200);
-
-            // Click visual effect
-            mineClickArea.style.transform = 'scale(0.98)';
-            setTimeout(() => mineClickArea.style.transform = 'scale(1)', 100);
-        });
-    }
-
-    // Initial balance update
-    updateBalanceDisplay();
+});
