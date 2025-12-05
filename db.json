@@ -1,40 +1,49 @@
 {
-  "articles": [
+  "newsFeed": [
     {
       "id": 1,
-      "category": "Market Analysis",
+      "headline": "Federal Reserve Hints at Postponing Rate Cuts Amid Sticky Inflation",
+      "summary": "Officials from the Federal Reserve have signaled that planned interest rate cuts may be delayed as recent data shows inflation is proving more persistent than anticipated. The market is now pricing in a 'higher for longer' scenario.",
+      "category": "Markets",
+      "source": "Reuters",
       "timestamp": "2025-12-05T10:30:00Z",
-      "source": "Bloomberg",
-      "headline": "Federal Reserve signals potential rate cuts in Q2 2026, Bitcoin surges past $120k.",
-      "summary": "In a surprising turn, Jerome Powell alluded to a more dovish stance, citing cooling inflation metrics. The crypto market reacted instantly, with major assets posting double-digit gains.",
-      "tags": ["Fed", "Interest Rates", "Bitcoin", "Macro"]
+      "tags": ["Monetary Policy", "Inflation", "Interest Rates", "FED"]
     },
     {
       "id": 2,
-      "category": "On-Chain",
-      "timestamp": "2025-12-05T09:45:00Z",
-      "source": "Glassnode",
-      "headline": "Massive stablecoin outflow from exchanges to private wallets detected.",
-      "summary": "Over $2 billion in USDT and USDC has been moved off major centralized exchanges in the last 24 hours, suggesting accumulation by large entities in anticipation of a market move.",
-      "tags": ["On-Chain", "Stablecoins", "Whale Alert"]
+      "headline": "Breakthrough in AI-Powered Material Science Could Revolutionize Construction",
+      "summary": "A research lab has announced a new AI model capable of designing novel alloys with unprecedented strength-to-weight ratios. Early simulations suggest these materials could reduce the cost of steel reinforcement in large-scale projects by up to 30%.",
+      "category": "Technology",
+      "source": "TechCrunch",
+      "timestamp": "2025-12-05T09:15:00Z",
+      "tags": ["Artificial Intelligence", "Material Science", "Construction Tech", "Steel"]
     },
     {
       "id": 3,
-      "category": "Technology",
-      "timestamp": "2025-12-05T08:15:00Z",
-      "source": "Civil City Labs",
-      "headline": "Project Leviathan v1.1 update: Real-time news aggregator module successfully deployed.",
-      "summary": "The Civil City platform has integrated a dynamic news fetching module, laying the groundwork for real-time, multi-source data streams. This marks a critical step in becoming a premier intelligence hub.",
-      "tags": ["Civil City", "Development", "Project Leviathan"]
+      "headline": "New Urban Zoning Regulations Proposed to Encourage High-Density Housing",
+      "summary": "City planners have unveiled a comprehensive new set of zoning laws aimed at fast-tracking the development of high-density residential buildings. The proposal faces opposition from some community groups concerned about infrastructure strain.",
+      "category": "Policy",
+      "source": "Urban Planning Weekly",
+      "timestamp": "2025-12-04T18:00:00Z",
+      "tags": ["Real Estate", "Zoning", "Housing", "Urban Development"]
     },
     {
       "id": 4,
-      "category": "Regulation",
-      "timestamp": "2025-12-04T18:00:00Z",
-      "source": "Reuters",
-      "headline": "EU finalizing MiCA II framework, focusing on DeFi and decentralized identity.",
-      "summary": "European regulators are drafting the next phase of crypto-asset regulation. Sources indicate a strong focus on on-chain governance and self-custody solutions.",
-      "tags": ["EU", "Regulation", "DeFi", "MiCA"]
+      "headline": "Bitcoin ETF Inflows Reach Record Highs as Institutional Adoption Accelerates",
+      "summary": "Spot Bitcoin ETFs have seen a massive surge in capital inflows over the past week, suggesting that institutional players are increasing their exposure to the digital asset. Analysts are watching for a potential supply shock.",
+      "category": "Markets",
+      "source": "CoinDesk",
+      "timestamp": "2025-12-04T15:45:00Z",
+      "tags": ["Bitcoin", "ETF", "Crypto", "Institutional Investment"]
+    },
+    {
+      "id": 5,
+      "headline": "Global Supply Chain for Raw Construction Materials Shows Signs of Easing",
+      "summary": "After months of volatility, shipping costs and delivery times for key construction materials like cement and lumber are beginning to normalize. However, geopolitical tensions in key regions remain a significant risk factor.",
+      "category": "Markets",
+      "source": "Bloomberg",
+      "timestamp": "2025-12-03T11:00:00Z",
+      "tags": ["Supply Chain", "Logistics", "Construction", "Commodities"]
     }
   ]
 }
