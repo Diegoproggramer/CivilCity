@@ -1,304 +1,72 @@
-/* --- LEVIATHAN CORE STYLES --- */
+/* Hyperion Core Styles - v1.0 */
 :root {
-    --bg-color: #0c0a09; /* Near black */
-    --primary-color: #9333ea; /* Purple */
-    --secondary-color: #a855f7; /* Lighter Purple */
-    --accent-color: #c084fc; /* Even Lighter Purple */
-    --text-color: #e5e7eb; /* Light Gray */
-    --text-muted-color: #9ca3af; /* Medium Gray */
-    --border-color: #374151; /* Dark Gray */
-    --container-bg: #111827; /* Dark Blue-Gray */
-    --success-color: #22c55e;
-    --error-color: #ef4444;
-    --font-primary: 'Tahoma', 'Verdana', sans-serif;
+    --primary-bg-dark: #0d1117;
+    --secondary-bg-dark: #161b22;
+    --border-color-dark: #30363d;
+    --text-primary-dark: #c9d1d9;
+    --text-secondary-dark: #8b949e;
+
+    --primary-bg-light: #ffffff;
+    --secondary-bg-light: #f6f8fa;
+    --border-color-light: #d0d7de;
+    --text-primary-light: #1f2328;
+    --text-secondary-light: #57606a;
+
+    --accent-color: #58a6ff; /* A neutral blue, can be overridden */
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* Global Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: var(--font-primary);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    overflow-x: hidden;
+    font-family: var(--font-main);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.container {
-    width: 95%;
-    max-width: 1800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: var(--container-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.2);
+/* --- Dark Theme (Default) --- */
+body[data-theme="dark"] {
+    background-color: var(--primary-bg-dark);
+    color: var(--text-primary-dark);
 }
+body[data-theme="dark"] #main-header, body[data-theme="dark"] #main-footer { background-color: var(--secondary-bg-dark); border-color: var(--border-color-dark); }
+body[data-theme="dark"] .card { background-color: var(--secondary-bg-dark); border: 1px solid var(--border-color-dark); }
+body[data-theme="dark"] nav a { color: var(--text-secondary-dark); }
+body[data-theme="dark"] nav a.active { color: var(--text-primary-dark); border-bottom: 2px solid var(--accent-color); }
+body[data-theme="dark"] button { background-color: var(--border-color-dark); color: var(--text-primary-dark); border: 1px solid var(--border-color-dark); }
 
-header {
-    text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 15px;
+/* --- Light Theme --- */
+body[data-theme="light"] {
+    background-color: var(--primary-bg-light);
+    color: var(--text-primary-light);
 }
+body[data-theme="light"] #main-header, body[data-theme="light"] #main-footer { background-color: var(--secondary-bg-light); border-color: var(--border-color-light); }
+body[data-theme="light"] .card { background-color: var(--primary-bg-light); border: 1px solid var(--border-color-light); }
+body[data-theme="light"] nav a { color: var(--text-secondary-light); }
+body[data-theme="light"] nav a.active { color: var(--text-primary-light); border-bottom: 2px solid var(--accent-color); }
+body[data-theme="light"] button { background-color: #f6f8fa; color: var(--text-primary-light); border: 1px solid rgba(27,31,36,0.15); }
 
-header h1 {
-    font-size: 2.5rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--accent-color);
-    font-weight: 700;
-}
 
-nav {
-    display: flex;
-    justify-content: center;
-    background-color: #1f2937;
-    border-radius: 6px;
-    margin-bottom: 20px;
-}
+/* --- Layout & Components --- */
+#app-container { display: flex; flex-direction: column; min-height: 100vh; }
+#main-header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.5rem; border-bottom: 1px solid; }
+#main-header .logo { font-size: 1.5rem; font-weight: 600; }
+#main-nav { display: flex; gap: 1.5rem; }
+nav a { text-decoration: none; padding: 0.5rem 0.2rem; font-weight: 500; }
+.header-actions button { padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; }
+#content-outlet { flex-grow: 1; padding: 2rem; max-width: 1400px; width: 100%; margin: 0 auto; }
+#main-footer { padding: 0.5rem 1.5rem; border-top: 1px solid; text-align: center; }
+.footer-text { margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary-light); }
+body[data-theme="dark"] .footer-text { color: var(--text-secondary-dark); }
+#ticker-tape-container { height: 70px; }
 
-.tab-button {
-    background: none;
-    border: none;
-    color: var(--text-muted-color);
-    padding: 15px 25px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border-bottom: 3px solid transparent;
-}
-
-.tab-button:hover {
-    color: var(--text-color);
-    background-color: rgba(147, 51, 234, 0.1);
-}
-
-.tab-button.active {
-    color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
-}
-
-main {
-    min-height: 70vh;
-}
-
-.tab-content {
-    display: none;
-    animation: fadeIn 0.5s;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-#dashboard-content {
-    display: grid;
-    grid-template-columns: 3fr 1fr; /* Main content takes 3 parts, sidebar 1 part */
-    gap: 20px;
-    height: 75vh;
-}
-
-.main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.sidebar {
-    background-color: #1f2937;
-    padding: 20px;
-    border-radius: 8px;
-    overflow-y: auto; /* Enable scrolling for the sidebar */
-}
-
-/* TradingView Widget Containers */
-.tradingview-widget-container {
-    flex-grow: 1; /* Makes the main chart fill available space */
-    min-height: 300px;
-}
-
-.tradingview-widget-container__ticker {
-    height: 70px;
-}
-
-/* --- PROMETHEUS NEWS FEED STYLES --- */
-.section-title {
-    font-size: 1.5rem;
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.news-feed {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.news-item {
-    background-color: var(--container-bg);
-    padding: 20px;
-    border-radius: 6px;
-    border-left: 4px solid var(--primary-color);
-    transition: transform 0.2s ease;
-}
-
-.news-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.news-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 0.8rem;
-    color: var(--text-muted-color);
-}
-
-.news-category {
-    font-weight: bold;
-    padding: 3px 8px;
-    border-radius: 4px;
-    color: #fff;
-}
-
-.news-category.markets { background-color: #1d4ed8; }
-.news-category.technology { background-color: #9333ea; }
-.news-category.policy { background-color: #be185d; }
-
-.news-headline {
-    font-size: 1.2rem;
-    color: var(--text-color);
-    margin: 10px 0;
-}
-
-.news-summary {
-    font-size: 0.95rem;
-    color: var(--text-muted-color);
-    line-height: 1.7;
-}
-
-.news-tags {
-    margin-top: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.tag {
-    background-color: #374151;
-    color: var(--text-color);
-    padding: 4px 10px;
-    border-radius: 15px;
-    font-size: 0.75rem;
-}
-
-/* --- MINING TERMINAL STYLES --- */
-#mining-terminal {
-    background-color: #000;
-    border: 2px solid var(--primary-color);
-    border-radius: 8px;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Courier New', Courier, monospace;
-    cursor: crosshair;
-}
-
-#terminal-body {
-    flex-grow: 1;
-    padding: 15px;
-    overflow-y: auto;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-.terminal-header, .terminal-footer {
-    background-color: #1a1a1a;
-    padding: 8px 15px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: var(--text-muted-color);
-}
-
-.terminal-header { border-bottom: 1px solid var(--border-color); }
-.terminal-footer { border-top: 1px solid var(--border-color); }
-#civ-balance { color: var(--success-color); font-weight: bold; }
-
-.log-entry {
-    animation: fadeIn 0.2s;
-}
-
-.log-entry.success { color: var(--success-color); }
-.log-entry.error { color: var(--error-color); }
-.log-entry.info { color: var(--accent-color); }
-
-/* --- GRIDFIRE TACTICAL SIDEBAR STYLES --- */
-#news-sidebar-container .section-title {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-}
-
-#news-sidebar-container .news-feed {
-    gap: 15px;
-}
-
-#news-sidebar-container .news-item {
-    padding: 15px;
-    border-left-width: 3px;
-}
-
-#news-sidebar-container .news-header {
-    flex-wrap: wrap;
-    gap: 10px;
-    font-size: 0.7rem;
-}
-
-#news-sidebar-container .news-headline {
-    font-size: 1rem;
-    margin: 8px 0;
-}
-
-#news-sidebar-container .news-summary {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-}
-
-#news-sidebar-container .news-tags {
-    margin-top: 10px;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
-}
-
+/* Dynamic Content Cards */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+.card { border-radius: 8px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.card-image { width: 100%; height: 180px; background-color: #333; object-fit: cover; }
+.card-content { padding: 1rem; }
+.card-content h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--accent-color); }
+.card-content p { font-size: 0.95rem; line-height: 1.5; }
+.card-meta { font-size: 0.8rem; color: var(--text-secondary-light); margin-top: 1rem; }
+body[data-theme="dark"] .card-meta { color: var(--text-secondary-dark); }
