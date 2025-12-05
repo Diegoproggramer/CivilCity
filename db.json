@@ -1,52 +1,35 @@
 {
-  "lang": {
-    "default": "fa",
-    "supported": ["fa", "en"]
-  },
+  "lang": "fa",
   "navigation": {
     "fa": [
-      { "id": "home", "text": "داشبورد اصلی" },
-      { "id": "analysis", "text": "تحلیل بازارها" },
-      { "id": "tools", "text": "ابزارها" },
-      { "id": "news", "text": "فید خبری" }
+      { "id": "home", "text": "داشبورد", "type": "page" },
+      { "id": "analysis", "text": "تحلیل تکنیکال", "type": "page" },
+      { "id": "swap", "text": "صرافی (Swap)", "type": "component" },
+      { "id": "tokenomics", "text": "توکن CivilCity", "type": "component" },
+      { "id": "news", "text": "اخبار و مقالات", "type": "page" },
+      { "id": "tools", "text": "ابزارها", "type": "page" }
     ],
     "en": [
-      { "id": "home", "text": "Main Dashboard" },
-      { "id": "analysis", "text": "Market Analysis" },
-      { "id": "tools", "text": "Tools" },
-      { "id": "news", "text": "News Feed" }
+      { "id": "home", "text": "Dashboard", "type": "page" },
+      { "id": "analysis", "text": "Technical Analysis", "type": "page" },
+      { "id": "swap", "text": "Swap", "type": "component" },
+      { "id": "tokenomics", "text": "CivilCity Token", "type": "component" },
+      { "id": "news", "text": "News & Articles", "type": "page" },
+      { "id": "tools", "text": "Tools", "type": "page" }
     ]
   },
   "pages": {
     "fa": {
-      "home": { "title": "به پورتال سیویل سیتی خوش آمدید", "content": "اینجا مرکز فرماندهی شما برای تحلیل و بررسی داده‌های حیاتی است." },
-      "analysis": { "title": "تحلیل تکنیکال پیشرفته", "content": "از ابزار زیر برای تحلیل نمودارها استفاده کنید." },
-      "tools": { "title": "جعبه ابزار", "content": "ابزارهای تحلیلی و محاسباتی در اینجا قرار خواهند گرفت." },
-      "news": { "title": "آخرین اخبار و تحلیل‌ها", "content": "" }
+      "home": { "title": "به پورتال سیویل سیتی خوش آمدید", "content": "اینجا مرکز فرماندهی شما برای تحلیل و بررسی داده‌های حیاتی است. وضعیت عملیاتی: %100" },
+      "analysis": { "title": "تحلیل تکنیکال پیشرفته", "content": "از ابزار زیر برای تحلیل بی‌رحمانه نمودارها استفاده کنید." },
+      "tools": { "title": "جعبه ابزار استراتژیک", "content": "ابزارهای تحلیلی و محاسباتی در اینجا قرار خواهند گرفت." },
+      "news": { "title": "فید اطلاعاتی", "content": "آخرین سیگنال‌ها و تحلیل‌های اطلاعاتی از سراسر وب." }
     },
     "en": {
-      "home": { "title": "Welcome to the Civil City Portal", "content": "This is your command center for analyzing critical data." },
-      "analysis": { "title": "Advanced Technical Analysis", "content": "Use the tool below to analyze charts." },
-      "tools": { "title": "Toolbox", "content": "Analytical and computational tools will be located here." },
-      "news": { "title": "Latest News & Analysis", "content": "" }
+        "home": { "title": "Welcome to Civil City Portal", "content": "This is your command center for analyzing critical data. Operational Status: 100%" },
+        "analysis": { "title": "Advanced Technical Analysis", "content": "Use the tool below for a ruthless analysis of charts." },
+        "tools": { "title": "Strategic Toolbox", "content": "Analytical and computational tools will be located here." },
+        "news": { "title": "Intelligence Feed", "content": "Latest signals and intel from across the web." }
     }
-  },
-  "articles": [
-    {
-      "id": "article-001",
-      "title": "تحلیل بنیادی بیت‌کوین در آستانه ۲۰۲۶",
-      "summary": "با نزدیک شدن به رویدادهای کلان اقتصادی، نگاهی عمیق به ارزش ذاتی بیت‌کوین می‌اندازیم.",
-      "category": "تحلیل بنیادی",
-      "publish_date": "2025-12-05T10:00:00Z",
-      "image_url": "https://images.unsplash.com/photo-1621419736836-9d76de23556a?q=80&w=1920&auto=format&fit=crop"
-    },
-    {
-      "id": "article-002",
-      "title": "نقش هوش مصنوعی در معاملات الگوریتمی",
-      "summary": "چگونه مدل‌های زبانی بزرگ (LLMs) در حال تغییر چهره بازارهای مالی هستند.",
-      "category": "تکنولوژی",
-      "publish_date": "2025-12-04T15:30:00Z",
-      "image_url": "https://images.unsplash.com/photo-1531771686259-c74637d35d79?q=80&w=1920&auto=format&fit=crop"
-    }
-  ]
+  }
 }
