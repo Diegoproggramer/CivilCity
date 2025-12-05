@@ -1,28 +1,40 @@
 {
-  "narrative": {
-    "title": "Civil City: Engineering Command",
-    "story": "ما تیمی از دانشجویان مهندسی عمران دانشگاه تبریز هستیم که برای متحول کردن صنعت ساخت و ساز گرد هم آمده‌ایم. Civil City پلتفرم ما برای تحلیل داده‌محور و پیش‌بینی هوشمند بازار است."
-  },
-  "housingData": {
-    "labels": ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر"],
-    "prices": [85.4, 88.2, 87.5, 90.1, 92.5, 91.8, 94.3]
-  },
-  "steelData": {
-    "labels": ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7"],
-    "prices": [23500, 23800, 23650, 24100, 24000, 24500, 24300]
-  },
-  "estimatorParams": {
-    "baseCostPerMeter": 12000000,
-    "qualityMultiplier": {
-      "standard": 1.0,
-      "premium": 1.5,
-      "luxury": 2.2
+  "articles": [
+    {
+      "id": 1,
+      "category": "Market Analysis",
+      "timestamp": "2025-12-05T10:30:00Z",
+      "source": "Bloomberg",
+      "headline": "Federal Reserve signals potential rate cuts in Q2 2026, Bitcoin surges past $120k.",
+      "summary": "In a surprising turn, Jerome Powell alluded to a more dovish stance, citing cooling inflation metrics. The crypto market reacted instantly, with major assets posting double-digit gains.",
+      "tags": ["Fed", "Interest Rates", "Bitcoin", "Macro"]
+    },
+    {
+      "id": 2,
+      "category": "On-Chain",
+      "timestamp": "2025-12-05T09:45:00Z",
+      "source": "Glassnode",
+      "headline": "Massive stablecoin outflow from exchanges to private wallets detected.",
+      "summary": "Over $2 billion in USDT and USDC has been moved off major centralized exchanges in the last 24 hours, suggesting accumulation by large entities in anticipation of a market move.",
+      "tags": ["On-Chain", "Stablecoins", "Whale Alert"]
+    },
+    {
+      "id": 3,
+      "category": "Technology",
+      "timestamp": "2025-12-05T08:15:00Z",
+      "source": "Civil City Labs",
+      "headline": "Project Leviathan v1.1 update: Real-time news aggregator module successfully deployed.",
+      "summary": "The Civil City platform has integrated a dynamic news fetching module, laying the groundwork for real-time, multi-source data streams. This marks a critical step in becoming a premier intelligence hub.",
+      "tags": ["Civil City", "Development", "Project Leviathan"]
+    },
+    {
+      "id": 4,
+      "category": "Regulation",
+      "timestamp": "2025-12-04T18:00:00Z",
+      "source": "Reuters",
+      "headline": "EU finalizing MiCA II framework, focusing on DeFi and decentralized identity.",
+      "summary": "European regulators are drafting the next phase of crypto-asset regulation. Sources indicate a strong focus on on-chain governance and self-custody solutions.",
+      "tags": ["EU", "Regulation", "DeFi", "MiCA"]
     }
-  },
-  "newsTicker": [
-    "تحلیل شاخص قیمت مسکن تهران: رشد ۲.۵ درصدی در ماه گذشته",
-    "قیمت میلگرد در بازار جهانی به ثبات نسبی رسید",
-    "اطلاعیه: نسخه بتای ربات تحلیل‌گر Roastear AI به زودی منتشر می‌شود",
-    "دانشگاه تبریز پیشرو در توسعه فناوری‌های نوین ساختمانی"
   ]
 }
