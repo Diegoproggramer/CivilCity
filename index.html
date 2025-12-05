@@ -3,29 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Civil City - Hyperion Ecosystem</title>
+    <title>CIVIL CITY - Hyperion Protocol</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Critical: TradingView library loaded directly to bypass CDN blocks -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
 <body data-theme="dark">
-    <div id="app-container">
-        <header id="main-header">
-            <div class="logo">CIVIL CITY</div>
-            <nav id="main-nav"></nav>
-            <div class="header-actions">
-                <button id="theme-switcher">تغییر تم</button>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="logo-container">
+                <!-- <img src="assets/logo.svg" alt="Civil City Logo" class="logo"> -->
+                <span class="logo-text">CIVIL CITY</span>
+            </div>
+            <div class="search-container">
+                <input type="search" placeholder="جستجوی نماد، ارز، خبر...">
+            </div>
+            <div class="user-actions">
+                <button id="login-btn">ورود / ثبت نام</button>
+                <button id="theme-switcher">تم روشن</button>
                 <button id="lang-switcher">EN</button>
             </div>
-        </header>
+        </div>
+        <nav id="main-nav" class="main-navigation">
+            <!-- Navigation links will be injected by app.js -->
+        </nav>
+    </header>
 
-        <main id="content-outlet">
-            <!-- Dynamic content will be loaded here by app.js -->
-        </main>
+    <main id="content-outlet">
+        <!-- Dynamic content will be rendered here by the Hyperion Engine -->
+    </main>
 
-        <footer id="main-footer">
-             <div id="ticker-tape-container"></div>
-             <p class="footer-text">&copy; 2025 Civil City. Hyperion Protocol.</p>
-        </footer>
+    <div id="ticker-tape-container" class="ticker-tape">
+        <!-- Ticker Tape widget will be injected here -->
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>
