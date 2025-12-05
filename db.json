@@ -1,49 +1,102 @@
 {
-  "newsFeed": [
+  "project": "Civil City Hyperion",
+  "version": "1.0",
+  "navigation": {
+    "fa": [
+      { "id": "home", "text": "خانه" },
+      { "id": "news", "text": "اخبار" },
+      { "id": "analysis", "text": "تحلیل و داده" }
+    ],
+    "en": [
+      { "id": "home", "text": "Home" },
+      { "id": "news", "text": "News" },
+      { "id": "analysis", "text": "Data & Analysis" }
+    ]
+  },
+  "pages": {
+    "fa": {
+      "home": {
+        "title": "به اکوسیستم هایپریون خوش آمدید",
+        "content": "اینجا مرکز فرماندهی و پورتال اصلی شما برای دسترسی به تمام ماژول‌های Civil City است."
+      },
+      "news": {
+        "title": "خبرخوان جامع",
+        "content": "آخرین اخبار ایران و جهان در حوزه‌های اقتصاد، تکنولوژی و ژئوپلیتیک."
+      },
+      "analysis": {
+        "title": "مرکز تحلیل داده",
+        "content": "دسترسی به ابزارهای تحلیل تکنیکال، داده‌های بازار و گزارش‌های استراتژیک."
+      }
+    },
+    "en": {
+      "home": {
+        "title": "Welcome to the Hyperion Ecosystem",
+        "content": "This is your command center and main portal for accessing all Civil City modules."
+      },
+      "news": {
+        "title": "Comprehensive Newsfeed",
+        "content": "The latest news from Iran and the world in economics, technology, and geopolitics."
+      },
+      "analysis": {
+        "title": "Data Analysis Center",
+        "content": "Access to technical analysis tools, market data, and strategic reports."
+      }
+    }
+  },
+  "articles": [
     {
-      "id": 1,
-      "headline": "Federal Reserve Hints at Postponing Rate Cuts Amid Sticky Inflation",
-      "summary": "Officials from the Federal Reserve have signaled that planned interest rate cuts may be delayed as recent data shows inflation is proving more persistent than anticipated. The market is now pricing in a 'higher for longer' scenario.",
-      "category": "Markets",
-      "source": "Reuters",
-      "timestamp": "2025-12-05T10:30:00Z",
-      "tags": ["Monetary Policy", "Inflation", "Interest Rates", "FED"]
+      "id": "fa_tech_001",
+      "lang": "fa",
+      "category": "تکنولوژی",
+      "title": "ایران در آستانه پرتاب ماهواره جدید",
+      "summary": "سازمان فضایی ایران اعلام کرد ماهواره 'پارس-۲' با قابلیت تصویربرداری با وضوح بالا در ماه‌های آینده به فضا پرتاب خواهد شد.",
+      "publish_date": "2025-12-05T10:00:00Z",
+      "image_url": "https://placehold.co/600x400/00a8ff/ffffff?text=Pars-2"
     },
     {
-      "id": 2,
-      "headline": "Breakthrough in AI-Powered Material Science Could Revolutionize Construction",
-      "summary": "A research lab has announced a new AI model capable of designing novel alloys with unprecedented strength-to-weight ratios. Early simulations suggest these materials could reduce the cost of steel reinforcement in large-scale projects by up to 30%.",
+      "id": "fa_econ_001",
+      "lang": "fa",
+      "category": "اقتصاد",
+      "title": "بانک مرکزی از سیاست‌های جدید ارزی رونمایی کرد",
+      "summary": "بسته جدید ارزی با هدف کنترل نوسانات بازار و تسهیل تجارت برای واردکنندگان و صادرکنندگان معرفی شد.",
+      "publish_date": "2025-12-04T15:30:00Z",
+      "image_url": "https://placehold.co/600x400/E9B824/ffffff?text=CBI"
+    },
+    {
+      "id": "en_global_001",
+      "lang": "en",
+      "category": "Global Politics",
+      "title": "UN Security Council Convenes for Emergency Session",
+      "summary": "An emergency session has been called to address the escalating tensions in the South China Sea.",
+      "publish_date": "2025-12-05T09:00:00Z",
+      "image_url": "https://placehold.co/600x400/007BFF/ffffff?text=UNSC"
+    },
+    {
+      "id": "en_finance_001",
+      "lang": "en",
+      "category": "Finance",
+      "title": "Federal Reserve Hints at Pausing Rate Hikes",
+      "summary": "Jerome Powell's latest speech suggests a potential halt in the aggressive rate hike cycle, causing a rally in the stock market.",
+      "publish_date": "2025-12-03T20:00:00Z",
+      "image_url": "https://placehold.co/600x400/28a745/ffffff?text=FED"
+    },
+    {
+      "id": "fa_geo_001",
+      "lang": "fa",
+      "category": "ژئوپلیتیک",
+      "title": "تحولات جدید در مذاکرات بر سر کریدور شمال-جنوب",
+      "summary": "ایران، روسیه و هند بر سر تسریع ساخت و ساز و رفع موانع گمرکی در کریدور حمل و نقل شمال-جنوب به توافقات جدیدی دست یافتند.",
+      "publish_date": "2025-12-02T12:00:00Z",
+      "image_url": "https://placehold.co/600x400/dc3545/ffffff?text=NSTC"
+    },
+    {
+      "id": "en_tech_002",
+      "lang": "en",
       "category": "Technology",
-      "source": "TechCrunch",
-      "timestamp": "2025-12-05T09:15:00Z",
-      "tags": ["Artificial Intelligence", "Material Science", "Construction Tech", "Steel"]
-    },
-    {
-      "id": 3,
-      "headline": "New Urban Zoning Regulations Proposed to Encourage High-Density Housing",
-      "summary": "City planners have unveiled a comprehensive new set of zoning laws aimed at fast-tracking the development of high-density residential buildings. The proposal faces opposition from some community groups concerned about infrastructure strain.",
-      "category": "Policy",
-      "source": "Urban Planning Weekly",
-      "timestamp": "2025-12-04T18:00:00Z",
-      "tags": ["Real Estate", "Zoning", "Housing", "Urban Development"]
-    },
-    {
-      "id": 4,
-      "headline": "Bitcoin ETF Inflows Reach Record Highs as Institutional Adoption Accelerates",
-      "summary": "Spot Bitcoin ETFs have seen a massive surge in capital inflows over the past week, suggesting that institutional players are increasing their exposure to the digital asset. Analysts are watching for a potential supply shock.",
-      "category": "Markets",
-      "source": "CoinDesk",
-      "timestamp": "2025-12-04T15:45:00Z",
-      "tags": ["Bitcoin", "ETF", "Crypto", "Institutional Investment"]
-    },
-    {
-      "id": 5,
-      "headline": "Global Supply Chain for Raw Construction Materials Shows Signs of Easing",
-      "summary": "After months of volatility, shipping costs and delivery times for key construction materials like cement and lumber are beginning to normalize. However, geopolitical tensions in key regions remain a significant risk factor.",
-      "category": "Markets",
-      "source": "Bloomberg",
-      "timestamp": "2025-12-03T11:00:00Z",
-      "tags": ["Supply Chain", "Logistics", "Construction", "Commodities"]
+      "title": "Breakthrough in Quantum Computing Announced by MIT",
+      "summary": "Researchers at MIT have developed a new method for stabilizing qubits, a major step towards scalable quantum computers.",
+      "publish_date": "2025-12-01T18:00:00Z",
+      "image_url": "https://placehold.co/600x400/6f42c1/ffffff?text=Quantum"
     }
   ]
 }
