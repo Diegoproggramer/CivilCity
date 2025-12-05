@@ -1,221 +1,171 @@
-/* --- PROJECT LEVIATHAN: STYLE DEFINITIONS (style.css) --- */
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap');
-
+/* --- LEVIATHAN CORE STYLES --- */
 :root {
-    --theme-purple: #8a2be2;
-    --theme-purple-light: #9d4edd;
-    --theme-bg-deep: #0a0914;
-    --theme-bg-content: #161523;
-    --theme-card-bg: #1e1b33;
-    --theme-text-primary: #e0e0e0;
-    --theme-text-secondary: #a0a0c0;
-    --theme-border: rgba(138, 43, 226, 0.25);
-    --theme-glow: rgba(138, 43, 226, 0.4);
-    --font-family: 'Vazirmatn', sans-serif;
+    --bg-color: #0c0a09; /* Near black */
+    --primary-color: #9333ea; /* Purple */
+    --secondary-color: #a855f7; /* Lighter Purple */
+    --accent-color: #c084fc; /* Even Lighter Purple */
+    --text-color: #e5e7eb; /* Light Gray */
+    --text-muted-color: #9ca3af; /* Medium Gray */
+    --border-color: #374151; /* Dark Gray */
+    --container-bg: #111827; /* Dark Blue-Gray */
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+    --font-primary: 'Tahoma', 'Verdana', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background-color: var(--theme-bg-deep);
-    color: var(--theme-text-primary);
-    font-family: var(--font-family);
-    margin: 0;
-    font-size: 14px;
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 95%;
+    max-width: 1800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--container-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.2);
 }
 
-/* --- Header & Ticker Bar --- */
-.main-header {
-    background-color: var(--theme-bg-content);
-    padding: 15px 20px;
-    border-bottom: 1px solid var(--theme-border);
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
 }
-.header-content {
+
+header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    background-color: #1f2937;
+    border-radius: 6px;
+    margin-bottom: 20px;
 }
-.logo h1 {
-    color: var(--theme-text-primary);
-    margin: 0;
-    font-size: 24px;
-    letter-spacing: 1px;
-}
-.main-nav button {
+
+.tab-button {
     background: none;
     border: none;
-    color: var(--theme-text-secondary);
-    padding: 10px 15px;
+    color: var(--text-muted-color);
+    padding: 15px 25px;
     cursor: pointer;
-    font-size: 15px;
-    transition: color 0.2s;
-    font-family: var(--font-family);
-}
-.main-nav button:hover, .main-nav button.active {
-    color: var(--theme-purple-light);
-    border-bottom: 2px solid var(--theme-purple-light);
-}
-#live-ticker-bar {
-    background-color: #111;
-    padding: 5px 0;
-    border-bottom: 1px solid var(--theme-border);
-    height: 45px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
 }
 
-/* --- Main Layout --- */
-.main-layout {
-    display: flex;
-    gap: 20px;
-    padding: 20px 0;
+.tab-button:hover {
+    color: var(--text-color);
+    background-color: rgba(147, 51, 234, 0.1);
 }
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
 main {
-    flex-grow: 1;
-}
-aside {
-    width: 350px;
-    flex-shrink: 0;
+    min-height: 70vh;
 }
 
-/* --- Content & Cards --- */
-.content-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s;
 }
-.card {
-    background: var(--theme-card-bg);
-    border: 1px solid var(--theme-border);
-    border-radius: 8px;
-    padding: 20px;
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#dashboard-content {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Main content takes 3 parts, sidebar 1 part */
+    gap: 20px;
+    height: 75vh;
+}
+
+.main-content {
     display: flex;
     flex-direction: column;
-}
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--theme-border);
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-}
-.card-header h2 {
-    margin: 0;
-    font-size: 1.1em;
-    color: var(--theme-purple-light);
-}
-.tab-content { display: none; }
-.tab-content.active { display: block; }
-.tradingview-widget-container {
-    width: 100%;
-    height: 500px; /* Crucial fix for widgets */
-}
-
-/* --- Specific Module Styling --- */
-#news-feed .news-item {
-    display: flex;
     gap: 15px;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--theme-border);
-}
-#news-feed .news-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-#news-feed img {
-    width: 80px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-#news-feed .news-content h3 {
-    font-size: 1em;
-    margin: 0 0 5px 0;
-    color: var(--theme-text-primary);
-}
-#news-feed .news-content p {
-    font-size: 0.85em;
-    margin: 0;
-    color: var(--theme-text-secondary);
 }
 
-input, select, .button {
-    font-family: var(--font-family);
-    background: #2a2647;
-    border: 1px solid var(--theme-border);
-    color: var(--theme-text-primary);
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 10px;
+.sidebar {
+    background-color: #1f2937;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: auto; /* Enable scrolling for the sidebar */
 }
-.button {
-    cursor: pointer;
-    background: var(--theme-purple);
-    font-weight: 700;
-    transition: all 0.2s;
-    text-align: center;
-    border: 1px solid var(--theme-purple);
-    margin-top: 15px;
-}
-.button:hover {
-    background-color: var(--theme-purple-light);
-    box-shadow: 0 0 10px var(--theme-glow);
-}
-#estimatorResult { margin-top: 15px; font-weight: bold; text-align: center; }
 
-/* --- Mining Terminal (Unchanged Logic, Resides in JS now) --- */
-#mining-terminal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 9, 20, 0.95); z-index: 10000; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
-#close-terminal-btn { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid #555; color: #888; font-size: 24px; width: 44px; height: 44px; border-radius: 50%; }
-@keyframes pulse-glow { 0% { box-shadow: 0 0 20px 5px var(--theme-glow); } 50% { box-shadow: 0 0 35px 15px rgba(157, 78, 221, 0.6); } 100% { box-shadow: 0 0 20px 5px var(--theme-glow); } }
-#mine-click-area { width: 250px; height: 250px; background: radial-gradient(circle, #4a148c, #1a1a3a); border: 3px solid var(--theme-purple); border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 50px; color: #fff; cursor: pointer; user-select: none; transition: transform 0.1s; position: relative; animation: pulse-glow 4s infinite ease-in-out; }
-#mine-click-area span { font-size: 16px; color: #ddd; margin-top: 10px; }
-.floating-text { position: absolute; font-size: 24px; font-weight: bold; color: #f0e68c; animation: float-up 1.2s forwards; opacity: 1; pointer-events: none; text-shadow: 0 0 5px #000; }
-@keyframes float-up { to { transform: translateY(-120px); opacity: 0; } }
-#balance-display { text-align: center; margin-bottom: 30px; }
-#balance-display span { font-size: 16px; color: var(--theme-text-secondary); }
-#civ-balance-terminal { font-size: 48px; font-weight: 700; color: var(--theme-text-primary); }
-/* News Feed Styles */
+/* TradingView Widget Containers */
+.tradingview-widget-container {
+    flex-grow: 1; /* Makes the main chart fill available space */
+    min-height: 300px;
+}
+
+.tradingview-widget-container__ticker {
+    height: 70px;
+}
+
+/* --- PROMETHEUS NEWS FEED STYLES --- */
 .section-title {
-    color: #c0c0c0;
-    border-bottom: 1px solid #444;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
     font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .news-feed {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 }
 
 .news-item {
-    background-color: #2a2a3e;
-    border: 1px solid #4f4f7a;
-    border-left: 4px solid #8a2be2; /* Accent color */
+    background-color: var(--container-bg);
     padding: 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.2s ease;
 }
 
 .news-item:hover {
-    background-color: #3a3a5e;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .news-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 15px;
-    font-size: 0.8rem;
-    color: #a0a0b0;
     margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: var(--text-muted-color);
 }
 
 .news-category {
@@ -224,74 +174,131 @@ input, select, .button {
     border-radius: 4px;
     color: #fff;
 }
-/* Category specific colors */
-.news-category.market-analysis { background-color: #2962ff; }
-.news-category.on-chain { background-color: #00bfa5; }
-.news-category.technology { background-color: #d84315; }
-.news-category.regulation { background-color: #ffab00; }
 
+.news-category.markets { background-color: #1d4ed8; }
+.news-category.technology { background-color: #9333ea; }
+.news-category.policy { background-color: #be185d; }
 
 .news-headline {
-    font-size: 1.25rem;
-    color: #e0e0e0;
+    font-size: 1.2rem;
+    color: var(--text-color);
     margin: 10px 0;
 }
 
 .news-summary {
     font-size: 0.95rem;
-    color: #b0b0c0;
-    line-height: 1.6;
+    color: var(--text-muted-color);
+    line-height: 1.7;
 }
 
 .news-tags {
     margin-top: 15px;
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
 .tag {
-    background-color: #444;
-    color: #ccc;
+    background-color: #374151;
+    color: var(--text-color);
     padding: 4px 10px;
-    border-radius: 12px;
+    border-radius: 15px;
     font-size: 0.75rem;
 }
-    /* Operation Gridfire: Tactical Sidebar Styles */
-    #news-sidebar-container .section-title {
-        font-size: 1.2rem; /* Smaller title */
-        margin-bottom: 15px;
-        padding-bottom: 8px;
-    }
 
-    #news-sidebar-container .news-feed {
-        gap: 15px; /* Tighter spacing */
-    }
+/* --- MINING TERMINAL STYLES --- */
+#mining-terminal {
+    background-color: #000;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: crosshair;
+}
 
-    #news-sidebar-container .news-item {
-        padding: 15px; /* Reduced padding */
-        border-left-width: 3px;
-    }
+#terminal-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
 
-    #news-sidebar-container .news-header {
-        flex-wrap: wrap; /* Allow wrapping on small screens */
-        gap: 10px;
-        font-size: 0.7rem;
-    }
+.terminal-header, .terminal-footer {
+    background-color: #1a1a1a;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted-color);
+}
 
-    #news-sidebar-container .news-headline {
-        font-size: 1rem; /* Smaller headline */
-        margin: 8px 0;
-    }
+.terminal-header { border-bottom: 1px solid var(--border-color); }
+.terminal-footer { border-top: 1px solid var(--border-color); }
+#civ-balance { color: var(--success-color); font-weight: bold; }
 
-    #news-sidebar-container .news-summary {
-        font-size: 0.85rem; /* Smaller summary text */
-        line-height: 1.5;
-        display: -webkit-box;
-        -webkit-line-clamp: 3; /* Limit summary to 3 lines */
-        -webkit-box-orient: vertical;  
-        overflow: hidden;
-    }
+.log-entry {
+    animation: fadeIn 0.2s;
+}
 
-    #news-sidebar-container .news-tags {
-        margin-top: 10px;
-    }
+.log-entry.success { color: var(--success-color); }
+.log-entry.error { color: var(--error-color); }
+.log-entry.info { color: var(--accent-color); }
+
+/* --- GRIDFIRE TACTICAL SIDEBAR STYLES --- */
+#news-sidebar-container .section-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+}
+
+#news-sidebar-container .news-feed {
+    gap: 15px;
+}
+
+#news-sidebar-container .news-item {
+    padding: 15px;
+    border-left-width: 3px;
+}
+
+#news-sidebar-container .news-header {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.7rem;
+}
+
+#news-sidebar-container .news-headline {
+    font-size: 1rem;
+    margin: 8px 0;
+}
+
+#news-sidebar-container .news-summary {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+#news-sidebar-container .news-tags {
+    margin-top: 10px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
