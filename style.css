@@ -1,72 +1,168 @@
-/* Hyperion Core Styles - v1.0 */
+/* --- LEVIATHAN CHASSIS STYLES --- */
+/* --- Author: Gemini AI --- */
+
+/* --- 1. Global Reset & Variables --- */
 :root {
-    --primary-bg-dark: #0d1117;
-    --secondary-bg-dark: #161b22;
-    --border-color-dark: #30363d;
-    --text-primary-dark: #c9d1d9;
-    --text-secondary-dark: #8b949e;
+    --bg-primary-dark: #121212;
+    --bg-secondary-dark: #1e1e1e;
+    --text-primary-dark: #e0e0e0;
+    --text-secondary-dark: #b0b0b0;
+    --accent-primary: #9c27b0;
+    --accent-secondary: #00bcd4;
+    --border-color-dark: #333;
 
-    --primary-bg-light: #ffffff;
-    --secondary-bg-light: #f6f8fa;
-    --border-color-light: #d0d7de;
-    --text-primary-light: #1f2328;
-    --text-secondary-light: #57606a;
-
-    --accent-color: #58a6ff; /* A neutral blue, can be overridden */
-    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --bg-primary-light: #f5f5f5;
+    --bg-secondary-light: #ffffff;
+    --text-primary-light: #212121;
+    --text-secondary-light: #555;
+    --border-color-light: #e0e0e0;
 }
 
-/* Global Reset */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
 
+/* --- 2. Theme Management --- */
 body {
-    font-family: var(--font-main);
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- Dark Theme (Default) --- */
+/* Dark Theme (Default) */
 body[data-theme="dark"] {
-    background-color: var(--primary-bg-dark);
+    background-color: var(--bg-primary-dark);
     color: var(--text-primary-dark);
 }
-body[data-theme="dark"] #main-header, body[data-theme="dark"] #main-footer { background-color: var(--secondary-bg-dark); border-color: var(--border-color-dark); }
-body[data-theme="dark"] .card { background-color: var(--secondary-bg-dark); border: 1px solid var(--border-color-dark); }
-body[data-theme="dark"] nav a { color: var(--text-secondary-dark); }
-body[data-theme="dark"] nav a.active { color: var(--text-primary-dark); border-bottom: 2px solid var(--accent-color); }
-body[data-theme="dark"] button { background-color: var(--border-color-dark); color: var(--text-primary-dark); border: 1px solid var(--border-color-dark); }
+body[data-theme="dark"] .main-header,
+body[data-theme="dark"] .main-navigation {
+    background-color: var(--bg-secondary-dark);
+    border-bottom: 1px solid var(--border-color-dark);
+}
+body[data-theme="dark"] input[type="search"] {
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
+    border: 1px solid var(--border-color-dark);
+}
+body[data-theme="dark"] button {
+    background-color: #333;
+    color: var(--text-primary-dark);
+    border: 1px solid #555;
+}
+body[data-theme="dark"] .main-navigation a { color: var(--text-secondary-dark); }
+body[data-theme="dark"] .main-navigation a.active { color: var(--accent-secondary); border-bottom-color: var(--accent-secondary); }
 
-/* --- Light Theme --- */
+/* Light Theme */
 body[data-theme="light"] {
-    background-color: var(--primary-bg-light);
+    background-color: var(--bg-primary-light);
     color: var(--text-primary-light);
 }
-body[data-theme="light"] #main-header, body[data-theme="light"] #main-footer { background-color: var(--secondary-bg-light); border-color: var(--border-color-light); }
-body[data-theme="light"] .card { background-color: var(--primary-bg-light); border: 1px solid var(--border-color-light); }
-body[data-theme="light"] nav a { color: var(--text-secondary-light); }
-body[data-theme="light"] nav a.active { color: var(--text-primary-light); border-bottom: 2px solid var(--accent-color); }
-body[data-theme="light"] button { background-color: #f6f8fa; color: var(--text-primary-light); border: 1px solid rgba(27,31,36,0.15); }
+body[data-theme="light"] .main-header,
+body[data-theme="light"] .main-navigation {
+    background-color: var(--bg-secondary-light);
+    border-bottom: 1px solid var(--border-color-light);
+}
+body[data-theme="light"] input[type="search"] {
+    background-color: #f0f0f0;
+    color: var(--text-primary-light);
+    border: 1px solid var(--border-color-light);
+}
+body[data-theme="light"] button {
+    background-color: #e0e0e0;
+    color: var(--text-primary-light);
+    border: 1px solid #ccc;
+}
+body[data-theme="light"] .main-navigation a { color: var(--text-secondary-light); }
+body[data-theme="light"] .main-navigation a.active { color: var(--accent-primary); border-bottom-color: var(--accent-primary); }
 
 
-/* --- Layout & Components --- */
-#app-container { display: flex; flex-direction: column; min-height: 100vh; }
-#main-header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.5rem; border-bottom: 1px solid; }
-#main-header .logo { font-size: 1.5rem; font-weight: 600; }
-#main-nav { display: flex; gap: 1.5rem; }
-nav a { text-decoration: none; padding: 0.5rem 0.2rem; font-weight: 500; }
-.header-actions button { padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; }
-#content-outlet { flex-grow: 1; padding: 2rem; max-width: 1400px; width: 100%; margin: 0 auto; }
-#main-footer { padding: 0.5rem 1.5rem; border-top: 1px solid; text-align: center; }
-.footer-text { margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary-light); }
-body[data-theme="dark"] .footer-text { color: var(--text-secondary-dark); }
-#ticker-tape-container { height: 70px; }
+/* --- 3. Layout & Components --- */
 
-/* Dynamic Content Cards */
-.grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
-.card { border-radius: 8px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-.card-image { width: 100%; height: 180px; background-color: #333; object-fit: cover; }
-.card-content { padding: 1rem; }
-.card-content h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--accent-color); }
-.card-content p { font-size: 0.95rem; line-height: 1.5; }
-.card-meta { font-size: 0.8rem; color: var(--text-secondary-light); margin-top: 1rem; }
-body[data-theme="dark"] .card-meta { color: var(--text-secondary-dark); }
+/* Header */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: wrap; /* For responsiveness */
+}
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--accent-primary);
+}
+.search-container {
+    flex-grow: 1;
+    margin: 0 20px;
+    min-width: 200px;
+}
+.search-container input {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+.user-actions button {
+    padding: 8px 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+/* Navigation */
+.main-navigation {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    overflow-x: auto;
+}
+.main-navigation a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s, border-bottom-color 0.2s;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+}
+.main-navigation a.active {
+    font-weight: 700;
+}
+
+/* Main Content */
+#content-outlet {
+    padding: 30px;
+}
+
+/* Ticker Tape */
+.ticker-tape {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* --- 4. Responsive Design --- */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+    }
+    .search-container {
+        width: 100%;
+        margin: 15px 0;
+        order: 3; /* Search bar goes last */
+    }
+    .user-actions { order: 2; }
+    .logo-container { order: 1; }
+    
+    .main-navigation {
+        justify-content: flex-start;
+    }
+}
