@@ -256,3 +256,42 @@ input, select, .button {
     border-radius: 12px;
     font-size: 0.75rem;
 }
+    /* Operation Gridfire: Tactical Sidebar Styles */
+    #news-sidebar-container .section-title {
+        font-size: 1.2rem; /* Smaller title */
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+    }
+
+    #news-sidebar-container .news-feed {
+        gap: 15px; /* Tighter spacing */
+    }
+
+    #news-sidebar-container .news-item {
+        padding: 15px; /* Reduced padding */
+        border-left-width: 3px;
+    }
+
+    #news-sidebar-container .news-header {
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+        gap: 10px;
+        font-size: 0.7rem;
+    }
+
+    #news-sidebar-container .news-headline {
+        font-size: 1rem; /* Smaller headline */
+        margin: 8px 0;
+    }
+
+    #news-sidebar-container .news-summary {
+        font-size: 0.85rem; /* Smaller summary text */
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Limit summary to 3 lines */
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+
+    #news-sidebar-container .news-tags {
+        margin-top: 10px;
+    }
