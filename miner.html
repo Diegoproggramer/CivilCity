@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ماینر سیویل سیتی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #1c1c1e;
+            --primary: #2f81f7;
+            --text: #ffffff;
+            --gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* حذف هایلایت آبی در موبایل */
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            height: 100vh;
+            overflow: hidden; /* جلوگیری از اسکرول */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .app-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(47,129,247,0.2) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--card-bg);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .league-badge {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Main Content - Balance */
+        .balance-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .balance-amount {
+            font-size: 3rem;
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .coin-icon-small {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #000;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        /* Tapping Area */
+        .clicker-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .main-coin {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, #2f81f7 0%, #0d1117 100%);
+            border-radius: 50%;
+            border: 4px solid #3a8bfd;
+            box-shadow: 0 0 30px rgba(47, 129, 247, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.1s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-coin:active {
+            transform: scale(0.95);
+        }
+
+        .main-coin img {
+            width: 60%;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        
+        .main-coin::after {
+            content: 'CVC';
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* Floating Numbers Animation */
+        .floating-number {
+            position: absolute;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+
+        /* Energy Bar */
+        .stats-container {
+            padding: 0 20px 20px;
+        }
+
+        .energy-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 10px;
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, #6eb4f7 100%);
+            transition: width 0.2s;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            background-color: var(--card-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 10px 25px; /* Extra padding for iPhone home bar */
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: #8b949e;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .nav-item.active {
+            color: white;
+        }
+        
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-header">
+        <div class="user-profile">
+            <span>👤</span>
+            <span>کاربر مهمان</span>
+        </div>
+        <div class="league-badge">دانشگاه تبریز 🎓</div>
+    </div>
+
+    <div class="balance-container">
+        <div style="color: #8b949e; margin-bottom: 5px;">موجودی سیویل کوین</div>
+        <div class="balance-amount">
+            <div class="coin-icon-small">$</div>
+            <span id="score">0</span>
+        </div>
+    </div>
+
+    <div class="clicker-area">
+        <div class="main-coin" id="coin-btn">
+            <!-- Coin logic handled in CSS/JS -->
+        </div>
+    </div>
+
+    <div class="stats-container">
+        <div class="energy-info">
+            <span>⚡ انرژی</span>
+            <span id="energy-text">1000 / 1000</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="energy-bar"></div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <span class="nav-icon">⛏️</span>
+            <span>ماین</span>
+        </a>
+        <a href="#" class="nav-item" onclick="alert('بخش دعوت از دوستان به زودی فعال می‌شود')">
+            <span class="nav-icon">👥</span>
+            <span>دوستان</span>
+        </a>
+        <a href="#" class="nav-item" onclick="alert('بخش ماموریت‌ها به زودی فعال می‌شود')">
+            <span class="nav-icon">📋</span>
+            <span>ماموریت</span>
+        </a>
+        <a href="index.html" class="nav-item"> <!-- لینک به سایت اصلی -->
+            <span class="nav-icon">🏠</span>
+            <span>وب‌سایت</span>
+        </a>
+    </nav>
+
+    <script>
+        // Miner Logic
+        let score = localStorage.getItem('civil_score') ? parseInt(localStorage.getItem('civil_score')) : 0;
+        let energy = 1000;
+        const maxEnergy = 1000;
+        
+        const scoreEl = document.getElementById('score');
+        const energyTextEl = document.getElementById('energy-text');
+        const energyBarEl = document.getElementById('energy-bar');
+        const coinBtn = document.getElementById('coin-btn');
+
+        // Initial UI Update
+        scoreEl.textContent = score.toLocaleString();
+
+        // Tap Function
+        coinBtn.addEventListener('click', (e) => {
+            if (energy > 0) {
+                // Increase Score
+                score += 1; 
+                scoreEl.textContent = score.toLocaleString();
+                localStorage.setItem('civil_score', score); // Save to local storage simulation
+
+                // Decrease Energy
+                energy -= 1;
+                updateEnergyUI();
+
+                // Visual Effect (Floating +1)
+                showFloatingNumber(e.clientX, e.clientY);
+                
+                // Haptic Feedback (Vibration on mobile)
+                if (navigator.vibrate) {
+                    navigator.vibrate(10);
+                }
+            }
+        });
+
+        function updateEnergyUI() {
+            energyTextEl.textContent = `${energy} / ${maxEnergy}`;
+            const percentage = (energy / maxEnergy) * 100;
+            energyBarEl.style.width = `${percentage}%`;
+        }
+
+        function showFloatingNumber(x, y) {
+            const el = document.createElement('div');
+            el.classList.add('floating-number');
+            el.textContent = '+1';
+            el.style.left = `${x}px`;
+            el.style.top = `${y}px`;
+            document.body.appendChild(el);
+
+            setTimeout(() => {
+                el.remove();
+            }, 1000);
+        }
+
+        // Energy Regeneration
+        setInterval(() => {
+            if (energy < maxEnergy) {
+                energy += 1;
+                updateEnergyUI();
+            }
+        }, 1000); // Regenerate 1 energy every second
+
+    </script>
+</body>
+</html>
