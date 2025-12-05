@@ -29,12 +29,64 @@ async function loadNews() {
 /**
  * Renders the fetched news articles into the 'news-content' tab.
  * This function translates raw data into a structured, high-impact visual format.
- */
-function renderNews(articles) {
-    const newsContent = document.getElementById('news-content');
-    if (!newsContent) {
-        console.error("Target container 'news-content' not found. Aborting render.");
-        return;
+ */    // Find and replace the entire renderNews function with this:
+    function renderNews(articles, targetElementId) {
+        const newsContainer = document.getElementById(targetElementId);
+        if (!newsContainer) {
+            console.error(`Target container '${targetElementId}' not found. Aborting render.`);
+            return;
+        }
+    
+        // Purge existing content to prepare for the live feed.
+        newsContainer.innerHTML = ''; 
+    
+        const title = document.createElement('h2');
+        title.className = 'section-title';
+        title.textContent = 'Live Intelligence Feed';
+        newsContainer.appendChild(title);
+    
+        const feedContainer = document.createElement('div');
+        feedContainer.className = 'news-feed';
+        
+        // Process each intelligence packet.
+        articles.forEach(article => {
+            const item = document.createElement('div');
+            item.className = 'news-item';
+            
+            const header = document.createElement('div');
+            header.className = 'news-header';
+            header.innerHTML = `
+                <span class="news-category ${article.category.toLowerCase().replace(' ', '-')}">${article.category}</span>
+                <span class="news-source">Source: ${article.source}</span>
+                <span class="news-timestamp">${new Date(article.timestamp).toLocaleString()}</span>
+            `;
+            
+            const headline = document.createElement('h3');
+            headline.className = 'news-headline';
+            headline.textContent = article.headline;
+    
+            const summary = document.createElement('p');
+            summary.className = 'news-summary';
+            summary.textContent = article.summary;
+    
+            const tags = document.createElement('div');
+            tags.className = 'news-tags';
+            article.tags.forEach(tag => {
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'tag';
+                tagSpan.textContent = tag;
+                tags.appendChild(tagSpan);
+            });
+    
+            item.appendChild(header);
+            item.appendChild(headline);
+            item.appendChild(summary);
+            item.appendChild(tags);
+            
+            feedContainer.appendChild(item);
+        });
+    
+        newsContainer.appendChild(feedContainer);
     }
 
     // Purge existing content to prepare for the live feed.
