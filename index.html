@@ -1,55 +1,94 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سیویل‌سیتی | شهر مهندسان آینده</title>
-
-  <!-- فونت‌های Orbitron و Vazirmatn -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- فایل استایل -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil City - Engineering Command</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #0a0a14; color: #e0e0e0; font-family: 'Courier New', monospace; margin: 0; padding: 0; padding-bottom: 200px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid #00f7ff; padding-bottom: 20px; }
+        .header h1 { color: #00f7ff; text-shadow: 0 0 10px #00f7ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .card { background: rgba(10, 20, 30, 0.8); border: 1px solid #00f7ff; border-radius: 10px; padding: 20px; backdrop-filter: blur(5px); box-shadow: 0 0 15px rgba(0, 247, 255, 0.2); }
+        .card h2 { color: #ffd700; margin-top: 0; border-bottom: 1px solid #555; padding-bottom: 10px; }
+        #news-ticker { background: #111; border: 1px solid #ffd700; padding: 10px; text-align: center; margin-bottom: 30px; overflow: hidden; white-space: nowrap; }
+        #news-ticker-content { display: inline-block; transition: opacity 0.5s; }
+        .tradingview-widget-container { height: 400px; }
+        input, select, button { background: #222; border: 1px solid #00f7ff; color: #fff; padding: 10px; border-radius: 5px; width: 100%; box-sizing: border-box; margin-top: 10px; }
+        button { cursor: pointer; background: #005555; font-weight: bold; }
+        #estimatorResult { margin-top: 15px; font-weight: bold; text-align: center; }
+    </style>
 </head>
-
 <body>
-  <header>
-    <div class="logo">سیویل‌سیتی</div>
-    <nav>
-      <a href="index.html" class="active">خانه</a>
-      <a href="about.html">درباره</a>
-      <a href="members.html">اعضا</a>
-      <a href="articles.html">مقالات</a>
-      <a href="contact.html">تماس</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h1>پلتفرم مهندسی عمران با طراحی نئونی مدرن</h1>
-    <p>جایی برای مهندسان، طراحان و نوآورانی که آیندهٔ زیرساخت‌ها را می‌سازند.</p>
-  </section>
+    <div class="container">
+        <header class="header">
+            <h1>CIVIL CITY - اتاق فرماندهی مهندسی</h1>
+            <p id="brand-story">درحال بارگذاری داستان برند...</p>
+        </header>
 
-  <section class="latest-article">
-    <h2>🧠 تازه‌ترین مقاله</h2>
+        <div id="news-ticker">
+            <span id="news-ticker-content">درحال بارگذاری اخبار...</span>
+        </div>
 
-    <div class="article-card">
-      <h3>سازه‌های هوشمند: مهندسی آیندهٔ سیستم‌های عمرانی</h3>
-      <p>
-        در جهان امروز که فناوری به قلب مهندسی نفوذ کرده،
-        سازه‌های هوشمند به‌عنوان گامی حیاتی برای ایمنی و دوام بناها شناخته می‌شوند.
-      </p>
-      <p>
-        مواد خودترمیم‌شونده، حسگرهای پیشرفته و هوش مصنوعی،
-        نسل تازه‌ای از زیرساخت‌های واکنش‌پذیر را possible ساخته‌اند.
-      </p>
-      <a href="articles.html" class="btn-neon">مشاهده کامل مقاله</a>
+        <div class="grid">
+            <div class="card">
+                <h2>تحلیل تکنیکال بازار مسکن</h2>
+                <canvas id="housingChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>تحلیل تکنیکال بازار فولاد</h2>
+                <canvas id="steelChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>ماشین‌حساب هزینه ساخت (AI Estimator)</h2>
+                <form id="estimatorForm">
+                    <input type="number" id="area" placeholder="متراژ (متر مربع)" required>
+                    <select id="quality">
+                        <option value="standard">استاندارد</option>
+                        <option value="premium">درجه یک</option>
+                        <option value="luxury">لوکس</option>
+                    </select>
+                    <button type="submit">محاسبه</button>
+                </form>
+                <div id="estimatorResult"></div>
+            </div>
+            <div class="card">
+                <h2>نرخ لحظه‌ای دلار (USDT/IRR)</h2>
+                <div class="tradingview-widget-container">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                    { "symbol": "TETHERUSDTOMAN", "width": "100%", "height": "100%", "locale": "fa_IR", "dateRange": "12M", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }
+                    </script>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <footer>
-    © ۲۰۲۵ سیویل‌سیتی | طراحی با تم Modern Neon Steel | توسعه: هادی (Diegoproggramer)
-  </footer>
+    <script src="script.js"></script>
 
-  <script src="main.js"></script>
+    <!-- BEGIN: CIV MINING MODULE (GHOST PROTOCOL) -->
+    <div id="civ-miner-panel" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: rgba(0, 10, 20, 0.95); border: 1px solid #00f7ff; border-radius: 15px; padding: 15px; box-shadow: 0 0 20px rgba(0, 247, 255, 0.3); z-index: 9999; backdrop-filter: blur(10px); font-family: 'Courier New', monospace;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;"><div style="width: 10px; height: 10px; background: #0f0; border-radius: 50%; box-shadow: 0 0 10px #0f0; animation: pulse 1.5s infinite;"></div><span style="color: #00f7ff; font-weight: bold; font-size: 14px;">CIV NETWORK: LIVE</span></div><span style="color: #aaa; font-size: 10px;">PHASE: TESTNET</span>
+        </div>
+        <div style="text-align: center; margin: 15px 0;"><div style="font-size: 12px; color: #888; margin-bottom: 5px;">MINED BALANCE</div><div id="civ-balance" style="font-size: 32px; font-weight: bold; color: #fff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">0.0000</div><div style="font-size: 14px; color: #ffd700;">$CIV</div></div>
+        <button onclick="mineCiv()" id="mine-btn" style="width: 100%; background: linear-gradient(90deg, #003333, #005555); border: 1px solid #00f7ff; color: #00f7ff; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; text-transform: uppercase; transition: all 0.1s; position: relative; overflow: hidden;">START MINING SEQUENCE</button>
+        <div style="text-align: center; margin-top: 8px; font-size: 10px; color: #555;">DEVICE HASH RATE: <span id="hash-rate">12.5</span> MH/s</div>
+    </div>
+    <style>@keyframes pulse {0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; }}</style>
+    <script>
+        let balance = parseFloat(localStorage.getItem('civ_balance')) || 0.0000;
+        const balanceEl = document.getElementById('civ-balance');
+        const btn = document.getElementById('mine-btn');
+        if(balanceEl) balanceEl.innerText = balance.toFixed(4);
+        function updateBalance(amount) { balance += amount; if(balanceEl) balanceEl.innerText = balance.toFixed(4); localStorage.setItem('civ_balance', balance); }
+        setInterval(() => { updateBalance(0.0001); }, 1000);
+        function mineCiv() { if (navigator.vibrate) navigator.vibrate(10); if(btn){ btn.style.transform = "scale(0.95)"; setTimeout(() => btn.style.transform = "scale(1)", 100); } let reward = 0.0100 + (Math.random() * 0.0050); updateBalance(reward); if(btn){ const originalText = btn.innerText; btn.innerText = "MINING..."; btn.style.borderColor = "#fff"; setTimeout(() => { btn.innerText = "TAP TO MINE"; btn.style.borderColor = "#00f7ff"; }, 100);}}
+        setInterval(() => { const rate = (10 + Math.random() * 5).toFixed(1); const hashRateEl = document.getElementById('hash-rate'); if(hashRateEl) hashRateEl.innerText = rate; }, 2000);
+    </script>
+    <!-- END: CIV MINING MODULE -->
+
 </body>
 </html>
